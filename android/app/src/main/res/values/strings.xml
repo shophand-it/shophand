@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ShopHand™ Auto Parts Delivery</string>
+    <string name="title_activity_main">ShopHand™ Auto Parts Delivery</string>
+    <string name="package_name">com.starsoullc.shophand</string>
+    <string name="custom_url_scheme">com.starsoullc.shophand</string>
+    <string name="app_short_description">Fast delivery for auto, aircraft, marine &amp; motorcycle parts from trusted suppliers</string>
+    <string name="app_keywords">auto parts,car parts,motorcycle parts,aircraft parts,marine parts,delivery,same day,parts finder,automotive,mechanics</string>
+</resources>

@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Prioritize key pages for indexing
+Allow: /business
+Allow: /driver
+Allow: /parts/*
+Allow: /delivery/*
+
+# Block development/admin areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /dev/
+
+# Sitemap location
+Sitemap: https://shophand.replit.app/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
