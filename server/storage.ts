@@ -92,29 +92,78 @@ export class MemStorage implements IStorage {
   }
 
   private initializeData() {
-    // Initialize categories
+    // Initialize categories for all vehicle types
     const categoriesData = [
-      { name: "Engine Parts", description: "Pistons, valves, gaskets", icon: "fas fa-engine" },
-      { name: "Brake System", description: "Pads, discs, calipers", icon: "fas fa-brake" },
-      { name: "Electrical", description: "Batteries, alternators", icon: "fas fa-bolt" },
-      { name: "Suspension", description: "Shocks, struts, springs", icon: "fas fa-tire" },
+      { name: "Automotive", description: "Engine, brake, suspension, electrical parts for cars & trucks", icon: "fas fa-car" },
+      { name: "Motorcycle", description: "Engine parts, tires, chains, exhaust systems", icon: "fas fa-motorcycle" },
+      { name: "Marine", description: "Engines, propellers, electronics, hull parts for boats & jetskis", icon: "fas fa-anchor" },
+      { name: "ATV & UTV", description: "Suspension, drivetrain, body panels, accessories for ATVs, UTVs & snowmobiles", icon: "fas fa-mountain" },
+      { name: "RV & Motorhome", description: "Appliances, electrical, plumbing, chassis parts", icon: "fas fa-truck" },
+      { name: "Heavy Equipment", description: "Hydraulics, tracks, engines, cab components", icon: "fas fa-cog" },
     ];
     categoriesData.forEach(cat => this.createCategory(cat));
 
-    // Initialize partners
+    // Initialize partners across all vehicle categories
     const partnersData = [
+      // Automotive
       { name: "BMW Dealership", type: "dealership", address: "1234 Auto Plaza Dr", phone: "(555) 123-4567", email: "parts@bmw-dealer.com", isActive: true, pickupInstructions: "Use service entrance" },
       { name: "AutoZone", type: "store", address: "1234 Commerce Way", phone: "(555) 234-5678", email: "manager@autozone.com", isActive: true, pickupInstructions: "Counter pickup" },
       { name: "Ford Dealership", type: "dealership", address: "5555 Dealership Row", phone: "(555) 345-6789", email: "parts@ford-dealer.com", isActive: true, pickupInstructions: "Parts department" },
       { name: "Auto Dismantler", type: "dismantler", address: "999 Salvage Yard Rd", phone: "(555) 456-7890", email: "info@autodismantler.com", isActive: true, pickupInstructions: "Check in at office first" },
+      
+      // Marine
+      { name: "MarineMax", type: "dealership", address: "800 Marina Blvd", phone: "(555) 567-8901", email: "parts@marinemax.com", isActive: true, pickupInstructions: "Service dock entrance" },
+      { name: "West Marine", type: "store", address: "450 Harbor View Dr", phone: "(555) 678-9012", email: "store@westmarine.com", isActive: true, pickupInstructions: "Parts counter" },
+      { name: "Boat Salvage Co", type: "dismantler", address: "1200 Boatyard Rd", phone: "(555) 789-0123", email: "info@boatsalvage.com", isActive: true, pickupInstructions: "Check in at harbor office" },
+      
+      // Motorcycle
+      { name: "Harley-Davidson Dealer", type: "dealership", address: "2100 Thunder Road", phone: "(555) 890-1234", email: "parts@harley-dealer.com", isActive: true, pickupInstructions: "Service department" },
+      { name: "Cycle Gear", type: "store", address: "3300 Bike Lane", phone: "(555) 901-2345", email: "manager@cyclegear.com", isActive: true, pickupInstructions: "Front counter" },
+      { name: "Motorcycle Salvage", type: "dismantler", address: "1500 Salvage Way", phone: "(555) 012-3456", email: "parts@motosalvage.com", isActive: true, pickupInstructions: "Office check-in required" },
+      
+      // ATV & RV
+      { name: "Polaris Dealer", type: "dealership", address: "4200 Off-Road Blvd", phone: "(555) 123-4567", email: "parts@polaris-dealer.com", isActive: true, pickupInstructions: "Service bay entrance" },
+      { name: "Camping World RV", type: "store", address: "5500 RV Center Dr", phone: "(555) 234-5678", email: "parts@campingworld.com", isActive: true, pickupInstructions: "Parts department" },
+      { name: "RV Salvage Depot", type: "dismantler", address: "6600 Salvage Park", phone: "(555) 345-6789", email: "info@rvsalvage.com", isActive: true, pickupInstructions: "Main office entrance" },
     ];
     partnersData.forEach(partner => this.createPartner(partner));
 
-    // Initialize vehicles
+    // Initialize vehicles across all categories
     const vehiclesData = [
-      { make: "BMW", model: "3 Series", year: 2020, engine: "2.0L Turbo" },
-      { make: "Ford", model: "F-150", year: 2019, engine: "3.5L V6" },
-      { make: "Toyota", model: "Camry", year: 2021, engine: "2.5L I4" },
+      // Automotive
+      { make: "BMW", model: "3 Series", year: 2020, engine: "2.0L Turbo", category: "automotive" },
+      { make: "Ford", model: "F-150", year: 2019, engine: "3.5L V6", category: "automotive" },
+      { make: "Toyota", model: "Camry", year: 2021, engine: "2.5L I4", category: "automotive" },
+      
+      // Motorcycles
+      { make: "Harley-Davidson", model: "Sportster", year: 2023, engine: "883cc V-Twin", category: "motorcycle" },
+      { make: "Yamaha", model: "R1", year: 2022, engine: "998cc Inline-4", category: "motorcycle" },
+      { make: "Honda", model: "Gold Wing", year: 2021, engine: "1833cc Flat-6", category: "motorcycle" },
+      
+      // Marine
+      { make: "Sea Ray", model: "Sundancer 320", year: 2023, engine: "MerCruiser 6.2L", category: "marine" },
+      { make: "Boston Whaler", model: "Outrage 330", year: 2022, engine: "Triple 300 HP", category: "marine" },
+      { make: "Yamaha", model: "242X E-Series", year: 2023, engine: "Twin 1.8L", category: "marine" },
+      { make: "Sea-Doo", model: "GTX 300", year: 2023, engine: "1630cc Rotax", category: "marine" },
+      { make: "Kawasaki", model: "Ultra 310LX", year: 2022, engine: "1498cc Supercharged", category: "marine" },
+      { make: "Yamaha", model: "GP1800R HO", year: 2023, engine: "1812cc SVHO", category: "marine" },
+      
+      // ATVs & UTVs
+      { make: "Polaris", model: "RZR XP 1000", year: 2023, engine: "999cc ProStar", category: "atv" },
+      { make: "Can-Am", model: "Maverick X3", year: 2022, engine: "900cc Turbo", category: "atv" },
+      { make: "Honda", model: "Pioneer 1000", year: 2023, engine: "999cc i-4", category: "atv" },
+      { make: "Ski-Doo", model: "Summit X 850", year: 2023, engine: "850cc E-TEC", category: "atv" },
+      { make: "Polaris", model: "RMK 850", year: 2022, engine: "850cc Patriot", category: "atv" },
+      { make: "Yamaha", model: "Mountain Max 800", year: 2023, engine: "800cc Genesis", category: "atv" },
+      
+      // RVs & Motorhomes
+      { make: "Winnebago", model: "View 24D", year: 2023, engine: "Mercedes 3.0L V6", category: "rv" },
+      { make: "Thor", model: "Ace 30.4", year: 2022, engine: "Ford 7.3L V8", category: "rv" },
+      { make: "Forest River", model: "Berkshire XLT", year: 2023, engine: "Freightliner Chassis", category: "rv" },
+      
+      // Heavy Equipment
+      { make: "Caterpillar", model: "320 Excavator", year: 2022, engine: "Cat C7.1 ACERT", category: "heavy" },
+      { make: "John Deere", model: "6155R Tractor", year: 2023, engine: "6.8L PowerTech", category: "heavy" },
     ];
     vehiclesData.forEach(vehicle => this.createVehicle(vehicle));
 

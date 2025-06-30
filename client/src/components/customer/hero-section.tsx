@@ -40,13 +40,13 @@ export default function HeroSection() {
       
       <div className="relative container mx-auto max-w-4xl text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-          Premium Auto Parts{" "}
+          Premium Parts for All Vehicles{" "}
           <span className="text-transparent bg-clip-text bg-gold-gradient">
             Delivered Fast
           </span>
         </h1>
         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          Get authentic parts from dealerships, auto stores, and certified dismantlers delivered to your doorstep
+          Cars • Trucks • Motorcycles • ATVs • Boats • Jetskis • Snowmobiles • RVs - Get authentic parts from dealerships, specialty stores, and certified dismantlers
         </p>
         
         {/* Vehicle Search Widget */}
