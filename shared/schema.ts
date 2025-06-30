@@ -11,8 +11,12 @@ export const users = pgTable("users", {
   lastName: text("last_name").notNull(),
   phone: text("phone"),
   address: text("address"),
-  userType: text("user_type").notNull().default("customer"), // customer, driver
+  userType: text("user_type").notNull().default("customer"), // customer, driver, business
   isActive: boolean("is_active").notNull().default(true),
+  subscriptionTier: text("subscription_tier").default("basic"), // basic, premium, enterprise
+  businessName: text("business_name"),
+  businessType: text("business_type"), // repair_shop, fleet, dealership
+  taxId: text("tax_id"),
 });
 
 export const drivers = pgTable("drivers", {
@@ -46,6 +50,7 @@ export const vehicles = pgTable("vehicles", {
   model: text("model").notNull(),
   year: integer("year").notNull(),
   engine: text("engine"),
+  category: text("category").notNull().default("automotive"), // automotive, motorcycle, marine, rv, heavy_equipment
 });
 
 export const categories = pgTable("categories", {
@@ -79,10 +84,13 @@ export const orders = pgTable("orders", {
   status: text("status").notNull().default("pending"), // pending, confirmed, picked_up, out_for_delivery, delivered, cancelled
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
   deliveryFee: decimal("delivery_fee", { precision: 10, scale: 2 }).default("0.00"),
+  platformFee: decimal("platform_fee", { precision: 10, scale: 2 }).default("0.00"),
   deliveryAddress: text("delivery_address").notNull(),
   pickupAddress: text("pickup_address"),
   estimatedDeliveryTime: timestamp("estimated_delivery_time"),
   actualDeliveryTime: timestamp("actual_delivery_time"),
+  priority: text("priority").default("standard"), // standard, express, emergency
+  orderType: text("order_type").default("individual"), // individual, bulk, subscription
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -103,6 +111,51 @@ export const deliveries = pgTable("deliveries", {
   deliveryTime: timestamp("delivery_time"),
   earnings: decimal("earnings", { precision: 10, scale: 2 }),
   status: text("status").notNull().default("assigned"), // assigned, picked_up, delivered
+});
+
+// New revenue-focused tables
+export const subscriptions = pgTable("subscriptions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id),
+  planType: text("plan_type").notNull(), // premium, enterprise, fleet
+  status: text("status").notNull().default("active"), // active, cancelled, expired
+  monthlyFee: decimal("monthly_fee", { precision: 10, scale: 2 }).notNull(),
+  features: jsonb("features"), // array of feature flags
+  startDate: timestamp("start_date").defaultNow(),
+  endDate: timestamp("end_date"),
+});
+
+export const businessAnalytics = pgTable("business_analytics", {
+  id: serial("id").primaryKey(),
+  date: timestamp("date").defaultNow(),
+  totalRevenue: decimal("total_revenue", { precision: 12, scale: 2 }).default("0.00"),
+  platformFees: decimal("platform_fees", { precision: 12, scale: 2 }).default("0.00"),
+  subscriptionRevenue: decimal("subscription_revenue", { precision: 12, scale: 2 }).default("0.00"),
+  totalOrders: integer("total_orders").default(0),
+  activeDrivers: integer("active_drivers").default(0),
+  activeCustomers: integer("active_customers").default(0),
+  marketShare: decimal("market_share", { precision: 5, scale: 2 }).default("0.00"),
+});
+
+export const partnerships = pgTable("partnerships", {
+  id: serial("id").primaryKey(),
+  partnerName: text("partner_name").notNull(),
+  partnerType: text("partner_type").notNull(), // insurance, manufacturer, fleet, white_label
+  contractValue: decimal("contract_value", { precision: 12, scale: 2 }),
+  revenueShare: decimal("revenue_share", { precision: 5, scale: 2 }),
+  status: text("status").default("active"),
+  startDate: timestamp("start_date").defaultNow(),
+  regions: jsonb("regions"), // array of regions/markets
+});
+
+export const productRecommendations = pgTable("product_recommendations", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id),
+  vehicleId: integer("vehicle_id").references(() => vehicles.id),
+  recommendedParts: jsonb("recommended_parts"), // AI-generated recommendations
+  predictionAccuracy: decimal("prediction_accuracy", { precision: 5, scale: 2 }),
+  conversionRate: decimal("conversion_rate", { precision: 5, scale: 2 }),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Insert schemas
@@ -146,6 +199,26 @@ export const insertDeliverySchema = createInsertSchema(deliveries).omit({
   id: true,
 });
 
+export const insertSubscriptionSchema = createInsertSchema(subscriptions).omit({
+  id: true,
+  startDate: true,
+});
+
+export const insertBusinessAnalyticsSchema = createInsertSchema(businessAnalytics).omit({
+  id: true,
+  date: true,
+});
+
+export const insertPartnershipSchema = createInsertSchema(partnerships).omit({
+  id: true,
+  startDate: true,
+});
+
+export const insertProductRecommendationSchema = createInsertSchema(productRecommendations).omit({
+  id: true,
+  createdAt: true,
+});
+
 // Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -173,3 +246,15 @@ export type OrderItem = typeof orderItems.$inferSelect;
 
 export type InsertDelivery = z.infer<typeof insertDeliverySchema>;
 export type Delivery = typeof deliveries.$inferSelect;
+
+export type InsertSubscription = z.infer<typeof insertSubscriptionSchema>;
+export type Subscription = typeof subscriptions.$inferSelect;
+
+export type InsertBusinessAnalytics = z.infer<typeof insertBusinessAnalyticsSchema>;
+export type BusinessAnalytics = typeof businessAnalytics.$inferSelect;
+
+export type InsertPartnership = z.infer<typeof insertPartnershipSchema>;
+export type Partnership = typeof partnerships.$inferSelect;
+
+export type InsertProductRecommendation = z.infer<typeof insertProductRecommendationSchema>;
+export type ProductRecommendation = typeof productRecommendations.$inferSelect;

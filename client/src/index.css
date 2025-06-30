@@ -135,4 +135,13 @@
   .shadow-gold {
     box-shadow: 0 10px 25px -3px rgba(255, 215, 0, 0.1), 0 4px 6px -2px rgba(255, 215, 0, 0.05);
   }
+  
+  .text-transparent {
+    color: transparent;
+  }
+  
+  .bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 }

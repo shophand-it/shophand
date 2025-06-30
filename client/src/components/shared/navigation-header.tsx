@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Wrench, ShoppingCart, User, RotateCcw } from "lucide-react";
+import { Wrench, ShoppingCart, User, RotateCcw, Building } from "lucide-react";
 import { useState } from "react";
 import type { InterfaceMode } from "@/App";
 
@@ -15,7 +15,13 @@ export default function NavigationHeader({
   const [cartCount] = useState(3);
 
   const toggleInterface = () => {
-    onInterfaceModeChange(interfaceMode === "customer" ? "driver" : "customer");
+    if (interfaceMode === "customer") {
+      onInterfaceModeChange("driver");
+    } else if (interfaceMode === "driver") {
+      onInterfaceModeChange("business");
+    } else {
+      onInterfaceModeChange("customer");
+    }
   };
 
   return (
@@ -39,7 +45,8 @@ export default function NavigationHeader({
               size="sm"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
-              {interfaceMode === "customer" ? "Customer" : "Driver"}
+              {interfaceMode === "customer" ? "Customer" : 
+               interfaceMode === "driver" ? "Driver" : "Business"}
             </Button>
             
             {interfaceMode === "customer" && (

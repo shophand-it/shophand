@@ -6,12 +6,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useState } from "react";
 import Home from "@/pages/home";
 import DriverDashboard from "@/pages/driver-dashboard";
+import BusinessDashboard from "@/pages/business-dashboard";
 import NotFound from "@/pages/not-found";
 import NavigationHeader from "@/components/shared/navigation-header";
 import BottomNavigation from "@/components/shared/bottom-navigation";
 import Footer from "@/components/shared/footer";
 
-export type InterfaceMode = "customer" | "driver";
+export type InterfaceMode = "customer" | "driver" | "business";
 
 function Router() {
   const [interfaceMode, setInterfaceMode] = useState<InterfaceMode>("customer");
@@ -25,7 +26,12 @@ function Router() {
       
       <Switch>
         <Route path="/">
-          {interfaceMode === "customer" ? <Home /> : <DriverDashboard />}
+          {interfaceMode === "customer" ? <Home /> : 
+           interfaceMode === "driver" ? <DriverDashboard /> : 
+           <BusinessDashboard />}
+        </Route>
+        <Route path="/business">
+          <BusinessDashboard />
         </Route>
         <Route component={NotFound} />
       </Switch>
