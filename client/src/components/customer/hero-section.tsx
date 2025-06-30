@@ -46,7 +46,7 @@ export default function HeroSection() {
           </span>
         </h1>
         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          Cars • Trucks • Motorcycles • ATVs • Boats • Jetskis • Snowmobiles • RVs - Get authentic parts from dealerships, specialty stores, and certified dismantlers
+          Cars • Trucks • Motorcycles • ATVs • Boats • Jetskis • Snowmobiles • RVs • Aircraft - Get authentic parts from dealerships, specialty stores, and certified dismantlers
         </p>
         
         {/* Vehicle Search Widget */}

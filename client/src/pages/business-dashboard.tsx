@@ -45,6 +45,12 @@ export default function BusinessDashboard() {
       description: "Business & fleet memberships"
     },
     {
+      name: "Premium Large Parts",
+      revenue: "$2.8M", 
+      growth: "+312%",
+      description: "Aircraft engines, wing assemblies, snowmobile blocks"
+    },
+    {
       name: "Strategic Partnerships",
       revenue: "$2.1M",
       growth: "+156%",
@@ -185,6 +191,48 @@ export default function BusinessDashboard() {
                   <p className="text-gray-400 text-sm">{market.drivers} drivers</p>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Premium Pricing Structure */}
+        <Card className="bg-automotive-black-800 border-gold-600/20 mb-8">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center">
+              <Crown className="w-5 h-5 mr-2 text-gold-500" />
+              Premium Pricing Tiers
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="bg-automotive-black-700 rounded-lg p-4">
+                <h3 className="font-semibold text-white mb-2">Standard Parts</h3>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="text-gray-400">Auto/Motorcycle:</span>
+                    <span className="text-gold-500 ml-2">$12-25 delivery</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">Marine/ATV:</span>
+                    <span className="text-gold-500 ml-2">$18-35 delivery</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-automotive-black-700 rounded-lg p-4 border-l-4 border-gold-500">
+                <h3 className="font-semibold text-white mb-2">Large Components</h3>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="text-gray-400">Snowmobile Engines:</span>
+                    <span className="text-gold-500 ml-2">$150-300 delivery</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">Aircraft Parts:</span>
+                    <span className="text-gold-500 ml-2">$500-2,000 delivery</span>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-2">Specialized handling, insurance, & certification required</p>
+              </div>
             </div>
           </CardContent>
         </Card>

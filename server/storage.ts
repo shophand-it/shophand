@@ -100,6 +100,7 @@ export class MemStorage implements IStorage {
       { name: "ATV & UTV", description: "Suspension, drivetrain, body panels, accessories for ATVs, UTVs & snowmobiles", icon: "fas fa-mountain" },
       { name: "RV & Motorhome", description: "Appliances, electrical, plumbing, chassis parts", icon: "fas fa-truck" },
       { name: "Heavy Equipment", description: "Hydraulics, tracks, engines, cab components", icon: "fas fa-cog" },
+      { name: "Aircraft", description: "Avionics, engines, landing gear, interior components", icon: "fas fa-plane" },
     ];
     categoriesData.forEach(cat => this.createCategory(cat));
 
@@ -125,6 +126,11 @@ export class MemStorage implements IStorage {
       { name: "Polaris Dealer", type: "dealership", address: "4200 Off-Road Blvd", phone: "(555) 123-4567", email: "parts@polaris-dealer.com", isActive: true, pickupInstructions: "Service bay entrance" },
       { name: "Camping World RV", type: "store", address: "5500 RV Center Dr", phone: "(555) 234-5678", email: "parts@campingworld.com", isActive: true, pickupInstructions: "Parts department" },
       { name: "RV Salvage Depot", type: "dismantler", address: "6600 Salvage Park", phone: "(555) 345-6789", email: "info@rvsalvage.com", isActive: true, pickupInstructions: "Main office entrance" },
+      
+      // Aircraft
+      { name: "Aircraft Spruce", type: "store", address: "7700 Aviation Way", phone: "(555) 456-7890", email: "parts@aircraftspruce.com", isActive: true, pickupInstructions: "Parts counter, ID required" },
+      { name: "Cessna Service Center", type: "dealership", address: "8800 Runway Dr", phone: "(555) 567-8901", email: "service@cessna-center.com", isActive: true, pickupInstructions: "Maintenance hangar entrance" },
+      { name: "Aviation Salvage Co", type: "dismantler", address: "9900 Airplane Boneyard", phone: "(555) 678-9012", email: "parts@aviationsalvage.com", isActive: true, pickupInstructions: "Security checkpoint required" },
     ];
     partnersData.forEach(partner => this.createPartner(partner));
 
@@ -164,6 +170,13 @@ export class MemStorage implements IStorage {
       // Heavy Equipment
       { make: "Caterpillar", model: "320 Excavator", year: 2022, engine: "Cat C7.1 ACERT", category: "heavy" },
       { make: "John Deere", model: "6155R Tractor", year: 2023, engine: "6.8L PowerTech", category: "heavy" },
+      
+      // Aircraft
+      { make: "Cessna", model: "172 Skyhawk", year: 2020, engine: "Lycoming IO-360", category: "aircraft" },
+      { make: "Piper", model: "Cherokee PA-28", year: 2019, engine: "Lycoming O-360", category: "aircraft" },
+      { make: "Beechcraft", model: "Bonanza G36", year: 2022, engine: "Continental IO-550-N", category: "aircraft" },
+      { make: "Diamond", model: "DA40 Star", year: 2021, engine: "Lycoming IO-360-M1A", category: "aircraft" },
+      { make: "Cirrus", model: "SR22T", year: 2023, engine: "Continental TSIO-550-K", category: "aircraft" },
     ];
     vehiclesData.forEach(vehicle => this.createVehicle(vehicle));
 
@@ -212,6 +225,100 @@ export class MemStorage implements IStorage {
         vehicleCompatibility: [2],
         imageUrl: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
         estimatedDeliveryTime: 30,
+        isActive: true,
+      },
+      
+      // Snowmobile Parts (Premium Pricing)
+      {
+        name: "850cc Engine Block",
+        description: "Complete Ski-Doo Summit X 850 engine block",
+        categoryId: 4,
+        partnerId: 10,
+        price: "8,999.99",
+        originalPrice: "12,500.00",
+        condition: "used",
+        source: "oem",
+        stock: 1,
+        vehicleCompatibility: [15],
+        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+        estimatedDeliveryTime: 480,
+        isActive: true,
+      },
+      {
+        name: "Track Assembly 154x2.6",
+        description: "Premium PowerClaw track for mountain riding",
+        categoryId: 4,
+        partnerId: 10,
+        price: "1,299.99",
+        originalPrice: "1,599.99",
+        condition: "new",
+        source: "aftermarket",
+        stock: 3,
+        vehicleCompatibility: [15, 16],
+        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+        estimatedDeliveryTime: 240,
+        isActive: true,
+      },
+      
+      // Aircraft Parts (Premium Pricing for Large Components)
+      {
+        name: "Lycoming IO-360 Engine",
+        description: "Complete overhauled engine for Cessna 172",
+        categoryId: 7,
+        partnerId: 15,
+        price: "42,500.00",
+        originalPrice: "65,000.00",
+        condition: "overhauled",
+        source: "certified",
+        stock: 1,
+        vehicleCompatibility: [22],
+        imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+        estimatedDeliveryTime: 2880,
+        isActive: true,
+      },
+      {
+        name: "Garmin G1000 Glass Cockpit",
+        description: "Complete avionics suite with installation kit",
+        categoryId: 7,
+        partnerId: 14,
+        price: "28,999.99",
+        originalPrice: "45,000.00",
+        condition: "new",
+        source: "oem",
+        stock: 2,
+        vehicleCompatibility: [22, 23, 24],
+        imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+        estimatedDeliveryTime: 1440,
+        isActive: true,
+      },
+      {
+        name: "Wing Assembly - Cessna 172",
+        description: "Complete wing assembly with fuel tanks",
+        categoryId: 7,
+        partnerId: 16,
+        price: "18,750.00",
+        originalPrice: "35,000.00",
+        condition: "serviceable",
+        source: "salvage",
+        stock: 1,
+        vehicleCompatibility: [22],
+        imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+        estimatedDeliveryTime: 1680,
+        isActive: true,
+      },
+      {
+        name: "Landing Gear Strut",
+        description: "Main landing gear strut for Piper Cherokee",
+        categoryId: 7,
+        partnerId: 15,
+        price: "3,450.00",
+        originalPrice: "5,200.00",
+        condition: "overhauled",
+        source: "certified",
+        stock: 2,
+        vehicleCompatibility: [23],
+        imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+        estimatedDeliveryTime: 720,
         isActive: true,
       },
     ];

@@ -133,6 +133,9 @@ Changelog:
 - June 30, 2025. Implemented subscription plans ($29-$149/mo) and enterprise contracts
 - June 30, 2025. Created strategic partnership tracking ($180M+ contract values)
 - June 30, 2025. Added global expansion framework for billion-dollar scaling
+- June 30, 2025. Expanded to aircraft parts with premium pricing ($500-2,000 delivery)
+- June 30, 2025. Added snowmobile parts with higher rates for large components
+- June 30, 2025. Implemented tiered delivery pricing structure for all vehicle categories
 ```
 
 ## User Preferences
