@@ -6,24 +6,31 @@ import { storage } from './storage';
 export class AutomationEngine {
   private static instance: AutomationEngine;
   
-  // Revenue automation metrics
+  // Global revenue automation metrics
   private revenueMetrics = {
-    weeklyRecurring: 1750000, // $1.75M weekly target
-    monthlyRecurring: 7583333, // $1.75M weekly * 4.33 weeks
-    dailyTarget: 250000, // $1.75M weekly / 7 days
-    hourlyAverage: 10417, // $250K daily / 24 hours
+    globalWeeklyRecurring: 14000000, // $14M global weekly (8 regions * $1.75M)
+    regionalWeeklyRecurring: 1750000, // $1.75M per region weekly
+    globalMonthlyRecurring: 60666667, // Global monthly revenue
+    globalDailyTarget: 2000000, // $2M global daily
+    regionalDailyTarget: 250000, // $250K per region daily
+    hourlyAverage: 83333, // Global hourly average
     subscriptionGrowth: 12.3,
-    enterpriseContracts: 52 // Scaled up for higher revenue
+    enterpriseContracts: 418, // Global enterprise contracts
+    regions: 8, // Major global regions
+    countries: 195 // Operating countries
   };
 
-  // Performance monitoring
+  // Global performance monitoring
   private performanceMetrics = {
     systemUptime: 99.97,
     responseTime: 45,
     crashFreeRate: 99.94,
-    activeUsers: 55847, // Scaled up for higher revenue volume
-    ordersProcessed: 1847, // Higher order processing for $250K daily
-    apiCallsToday: 12347593 // Increased API calls for higher traffic
+    globalActiveUsers: 447000, // Global user base across 8 regions
+    globalOrdersProcessed: 14776, // Global order processing for $2M daily
+    globalApiCallsToday: 98780744, // Global API calls across all regions
+    datacenters: 24, // Global datacenter infrastructure
+    edgeLocations: 156, // CDN edge locations worldwide
+    globalLatency: 32 // Average global latency in ms
   };
 
   // Automated pricing algorithms

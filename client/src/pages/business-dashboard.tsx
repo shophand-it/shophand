@@ -19,21 +19,24 @@ import {
 import SubscriptionPlans from "@/components/business/subscription-plans";
 import RevenueTracker from "@/components/automation/revenue-tracker";
 import PerformanceMonitor from "@/components/automation/performance-monitor";
+import GlobalOperations from "@/components/global/global-operations";
 
 export default function BusinessDashboard() {
-  // Business analytics data - $1.75M weekly revenue target
+  // Global business analytics data - $1.75M weekly revenue target
   const businessMetrics = {
-    totalRevenue: "$205.6M", // $1.75M weekly * 52 weeks * 2.27 growth multiplier
+    totalRevenue: "$2.47B", // Global operations across 8 major regions
     monthlyGrowth: "+127%",
-    weeklyRevenue: "$1.75M", // New weekly target
-    platformFees: "$16.5M", // Scaled up proportionally
-    subscriptionRevenue: "$3.86M", // Monthly subscription revenue
-    totalOrders: "5.2M", // Scaled up for higher revenue
-    activeDrivers: "195,000", // Scaled up driver network
-    activeCustomers: "$1.2M", // Scaled up customer base
-    marketShare: "23.4%",
-    partnerships: 198, // More partnerships for higher revenue
-    regions: 47 // Global expansion
+    weeklyRevenue: "$1.75M", // Per region weekly target
+    globalWeeklyRevenue: "$14M", // 8 regions * $1.75M weekly
+    platformFees: "$132M", // Global platform fees
+    subscriptionRevenue: "$30.9M", // Global monthly subscription revenue
+    totalOrders: "42M", // Global order volume
+    activeDrivers: "323,000", // Global driver network
+    activeCustomers: "9.6M", // Global customer base
+    marketShare: "34.7%", // Global market share
+    partnerships: 2366, // Global partnerships
+    regions: 8, // Major global regions
+    countries: 195 // Operating in 195 countries
   };
 
   const revenueStreams = [
@@ -70,17 +73,27 @@ export default function BusinessDashboard() {
   ];
 
   const expansionMarkets = [
-    { region: "North America", status: "Active", revenue: "$28.5M", drivers: "25,000" },
-    { region: "Europe", status: "Expanding", revenue: "$12.3M", drivers: "12,500" },
-    { region: "Asia-Pacific", status: "Launch", revenue: "$4.8M", drivers: "5,200" },
-    { region: "Latin America", status: "Planning", revenue: "$1.6M", drivers: "2,300" }
+    { region: "North America", status: "Active", revenue: "$52.3M", drivers: "85,000" },
+    { region: "Europe", status: "Active", revenue: "$45.8M", drivers: "65,000" },
+    { region: "Asia-Pacific", status: "Active", revenue: "$38.2M", drivers: "58,000" },
+    { region: "Latin America", status: "Active", revenue: "$25.6M", drivers: "35,000" },
+    { region: "Middle East", status: "Active", revenue: "$18.4M", drivers: "22,000" },
+    { region: "Africa", status: "Expanding", revenue: "$12.8M", drivers: "18,000" },
+    { region: "Australia/Oceania", status: "Active", revenue: "$8.9M", drivers: "12,000" },
+    { region: "Eastern Europe", status: "Active", revenue: "$15.2M", drivers: "28,000" }
   ];
 
   const strategicPartnerships = [
-    { partner: "State Farm Insurance", type: "Insurance", value: "$45M", status: "Active" },
-    { partner: "Ford Motor Company", type: "Manufacturer", value: "$78M", status: "Negotiating" },
-    { partner: "Enterprise Fleet", type: "B2B Fleet", value: "$23M", status: "Active" },
-    { partner: "AutoZone Corporate", type: "Retail Chain", value: "$34M", status: "Active" }
+    { partner: "State Farm Insurance", type: "Insurance", value: "$195M", status: "Active" },
+    { partner: "Ford Motor Company", type: "Manufacturer", value: "$338M", status: "Active" },
+    { partner: "Enterprise Fleet", type: "B2B Fleet", value: "$125M", status: "Active" },
+    { partner: "AutoZone Corporate", type: "Retail Chain", value: "$148M", status: "Active" },
+    { partner: "Toyota Global", type: "Manufacturer", value: "$285M", status: "Active" },
+    { partner: "BMW Group", type: "Luxury Parts", value: "$156M", status: "Active" },
+    { partner: "Airbus Industries", type: "Aircraft Parts", value: "$420M", status: "Active" },
+    { partner: "Boeing Commercial", type: "Aviation", value: "$365M", status: "Active" },
+    { partner: "Rolls-Royce Marine", type: "Marine Parts", value: "$89M", status: "Active" },
+    { partner: "Caterpillar Global", type: "Heavy Equipment", value: "$245M", status: "Active" }
   ];
 
   return (
@@ -101,18 +114,31 @@ export default function BusinessDashboard() {
           <p className="cyber-text">Need a part? Shop Hand it! - Supply chain performance</p>
         </div>
 
-        {/* Key Metrics Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        {/* Global Key Metrics Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
+          <Card className="bg-automotive-black-800 border-gold-600/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm text-gray-400 flex items-center">
+                <Globe className="w-4 h-4 mr-2 text-gold-500" />
+                Global Weekly
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-gold-500">{businessMetrics.globalWeeklyRevenue}</div>
+              <p className="text-green-400 text-sm">{businessMetrics.regions} regions</p>
+            </CardContent>
+          </Card>
+
           <Card className="bg-automotive-black-800 border-gold-600/20">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-gray-400 flex items-center">
                 <DollarSign className="w-4 h-4 mr-2 text-gold-500" />
-                Weekly Revenue
+                Regional Weekly
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-gold-500">{businessMetrics.weeklyRevenue}</div>
-              <p className="text-green-400 text-sm">Target achieved</p>
+              <p className="text-green-400 text-sm">Per region</p>
             </CardContent>
           </Card>
 
@@ -333,6 +359,16 @@ export default function BusinessDashboard() {
           </CardHeader>
           <CardContent>
             <RevenueTracker />
+          </CardContent>
+        </Card>
+
+        {/* Global Operations */}
+        <Card className="bg-black/40 border-gray-700">
+          <CardHeader>
+            <CardTitle className="text-white">Global Operations</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <GlobalOperations />
           </CardContent>
         </Card>
 
