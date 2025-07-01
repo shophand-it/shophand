@@ -1,80 +1,102 @@
-<svg width="220" height="65" viewBox="0 0 220 65" xmlns="http://www.w3.org/2000/svg">
+<svg width="240" height="70" viewBox="0 0 240 70" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Simple gradients for working-class appeal -->
+    <!-- Professional gradients -->
     <linearGradient id="handGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFA500;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:1" />
     </linearGradient>
     
     <linearGradient id="truckGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2E86C1;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1B4F72;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980B9;stop-opacity:1" />
     </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2C3E50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34495E;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Drop shadow filter -->
+    <filter id="dropShadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
   </defs>
   
-  <!-- Simple background badge -->
-  <rect x="5" y="5" width="50" height="50" rx="8" fill="#34495E" stroke="#FFA500" stroke-width="2"/>
+  <!-- Main logo circle -->
+  <circle cx="35" cy="35" r="30" fill="#FFFFFF" stroke="#E74C3C" stroke-width="3" filter="url(#dropShadow)"/>
   
-  <!-- Working hand with wrench and part -->
-  <g transform="translate(12, 12)">
-    <!-- Hand/thumb -->
-    <path d="M8 6 Q10 4 14 6 L18 10 Q20 12 18 16 L14 22 Q12 24 8 22 L6 18 Q4 16 6 12 Z" 
-          fill="url(#handGradient)" stroke="#D35400" stroke-width="0.5"/>
+  <!-- Hand holding parts -->
+  <g transform="translate(18, 18)">
+    <!-- Strong working hand -->
+    <path d="M6 10 C8 8 12 8 16 12 L20 16 C22 18 22 22 20 26 L16 32 C14 34 10 34 6 30 L4 26 C2 22 2 18 4 14 Z" 
+          fill="url(#handGradient)" stroke="#A93226" stroke-width="1"/>
     
-    <!-- Wrench in hand -->
-    <rect x="16" y="8" width="12" height="3" rx="1.5" fill="#BDC3C7" transform="rotate(15 22 10)"/>
-    <rect x="26" y="7" width="4" height="5" rx="1" fill="#BDC3C7" transform="rotate(15 28 9.5)"/>
+    <!-- Thumb detail -->
+    <path d="M8 16 C10 14 14 16 16 18 C18 20 16 24 14 26 C12 28 8 26 6 24 Z" 
+          fill="#D5352A" stroke="#A93226" stroke-width="0.5"/>
     
-    <!-- Auto part (brake disc) -->
-    <circle cx="28" cy="6" r="4" fill="#34495E" stroke="#95A5A6" stroke-width="1"/>
-    <circle cx="28" cy="6" r="2" fill="#95A5A6"/>
-    <circle cx="28" cy="6" r="0.8" fill="#2C3E50"/>
+    <!-- Auto parts in hand -->
+    <!-- Gear/engine part -->
+    <circle cx="24" cy="8" r="5" fill="#95A5A6" stroke="#7F8C8D" stroke-width="1"/>
+    <circle cx="24" cy="8" r="2.5" fill="#2C3E50"/>
+    <rect x="23" y="3" width="2" height="2" fill="#95A5A6"/>
+    <rect x="23" y="11" width="2" height="2" fill="#95A5A6"/>
+    <rect x="19" y="7" width="2" height="2" fill="#95A5A6"/>
+    <rect x="27" y="7" width="2" height="2" fill="#95A5A6"/>
     
-    <!-- Small delivery truck -->
-    <g transform="translate(2, 28)">
-      <rect x="0" y="4" width="12" height="6" rx="1" fill="url(#truckGradient)"/>
-      <rect x="12" y="6" width="4" height="4" rx="0.5" fill="url(#truckGradient)"/>
-      <circle cx="3" cy="11" r="1.5" fill="#2C3E50"/>
-      <circle cx="13" cy="11" r="1.5" fill="#2C3E50"/>
-      <circle cx="3" cy="11" r="0.7" fill="#BDC3C7"/>
-      <circle cx="13" cy="11" r="0.7" fill="#BDC3C7"/>
-    </g>
+    <!-- Wrench -->
+    <rect x="18" y="18" width="14" height="3" rx="1.5" fill="#BDC3C7" stroke="#95A5A6" stroke-width="0.5"/>
+    <rect x="30" y="16" width="6" height="7" rx="2" fill="#BDC3C7" stroke="#95A5A6" stroke-width="0.5"/>
   </g>
   
-  <!-- Speed/delivery lines -->
-  <g opacity="0.7">
-    <line x1="62" y1="25" x2="70" y2="25" stroke="#FFA500" stroke-width="2"/>
-    <line x1="62" y1="30" x2="68" y2="30" stroke="#FFA500" stroke-width="1.5"/>
-    <line x1="62" y1="35" x2="66" y2="35" stroke="#FFA500" stroke-width="1"/>
+  <!-- Delivery truck -->
+  <g transform="translate(8, 45)">
+    <rect x="0" y="6" width="18" height="10" rx="2" fill="url(#truckGradient)" stroke="#2471A3" stroke-width="1"/>
+    <rect x="18" y="8" width="8" height="8" rx="1" fill="url(#truckGradient)" stroke="#2471A3" stroke-width="1"/>
+    <circle cx="5" cy="18" r="2.5" fill="#2C3E50" stroke="#34495E" stroke-width="1"/>
+    <circle cx="21" cy="18" r="2.5" fill="#2C3E50" stroke="#34495E" stroke-width="1"/>
+    <circle cx="5" cy="18" r="1.2" fill="#BDC3C7"/>
+    <circle cx="21" cy="18" r="1.2" fill="#BDC3C7"/>
+    
+    <!-- Truck details -->
+    <rect x="2" y="8" width="3" height="2" fill="#85C1E9"/>
+    <rect x="20" y="10" width="2" height="2" fill="#85C1E9"/>
   </g>
   
-  <!-- Company text - bold, readable, working-class friendly -->
+  <!-- Motion lines -->
+  <g opacity="0.8">
+    <line x1="72" y1="30" x2="82" y2="30" stroke="#E74C3C" stroke-width="3" stroke-linecap="round"/>
+    <line x1="72" y1="35" x2="80" y2="35" stroke="#E74C3C" stroke-width="2" stroke-linecap="round"/>
+    <line x1="72" y1="40" x2="78" y2="40" stroke="#E74C3C" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Company name and branding -->
   <g>
-    <!-- "ShopHand" text -->
-    <text x="78" y="28" font-family="Arial Black, Impact, sans-serif" font-size="22" font-weight="900" fill="#34495E">
+    <!-- Main logo text -->
+    <text x="90" y="32" font-family="Impact, Arial Black, sans-serif" font-size="28" font-weight="900" fill="url(#textGradient)">
       Shop
     </text>
-    <text x="130" y="28" font-family="Arial Black, Impact, sans-serif" font-size="22" font-weight="900" fill="#FFA500">
+    <text x="150" y="32" font-family="Impact, Arial Black, sans-serif" font-size="28" font-weight="900" fill="#E74C3C">
       Hand
     </text>
-    <text x="185" y="28" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFA500">
+    <text x="210" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E74C3C">
       ™
     </text>
     
-    <!-- Clear tagline for working folks -->
-    <text x="78" y="42" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#2C3E50">
-      PARTS DELIVERED FAST
+    <!-- Professional tagline -->
+    <text x="90" y="46" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#2C3E50">
+      AUTO PARTS DELIVERED
     </text>
     
-    <!-- Relatable slogan -->
-    <text x="78" y="55" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#7F8C8D">
+    <!-- Catchphrase -->
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="10" font-weight="500" fill="#7F8C8D">
       Need a part? Shop Hand it!
     </text>
   </g>
   
-  <!-- Small "For Working Folks" badge -->
-  <rect x="200" y="8" width="15" height="8" rx="2" fill="#E67E22" opacity="0.9"/>
-  <text x="202" y="13" font-family="Arial, sans-serif" font-size="5" font-weight="600" fill="white">
-    PRO
+  <!-- Professional badge -->
+  <rect x="215" y="10" width="20" height="12" rx="3" fill="#E74C3C" stroke="#C0392B" stroke-width="1"/>
+  <text x="217" y="18" font-family="Arial, sans-serif" font-size="7" font-weight="700" fill="white">
+    FAST
   </text>
 </svg>
