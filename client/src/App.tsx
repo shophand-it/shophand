@@ -7,6 +7,7 @@ import { useState } from "react";
 import Home from "@/pages/home";
 import DriverDashboard from "@/pages/driver-dashboard";
 import BusinessDashboard from "@/pages/business-dashboard";
+import RealAnalytics from "@/pages/real-analytics";
 import Checkout from "@/pages/checkout";
 import NotFound from "@/pages/not-found";
 import NavigationHeader from "@/components/shared/navigation-header";
@@ -33,6 +34,9 @@ function Router() {
         </Route>
         <Route path="/business">
           <BusinessDashboard />
+        </Route>
+        <Route path="/real-analytics">
+          <RealAnalytics />
         </Route>
         <Route path="/checkout">
           <Checkout />

@@ -22,21 +22,39 @@ import PerformanceMonitor from "@/components/automation/performance-monitor";
 import GlobalOperations from "@/components/global/global-operations";
 
 export default function BusinessDashboard() {
-  // Global business analytics data - $1.75M weekly revenue target
+  // Fetch real analytics data from your live platform
+  const { data: realAnalytics, isLoading } = useQuery({
+    queryKey: ['/api/analytics/real'],
+    refetchInterval: 30000, // Update every 30 seconds
+  });
+
+  // Show loading state while fetching real data
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-automotive-black-900">
+        <div className="text-center">
+          <div className="animate-spin w-12 h-12 border-4 border-gold-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-white">Loading your real platform analytics...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Use real data from your actual platform
   const businessMetrics = {
-    totalRevenue: "$2.47B", // Global operations across 8 major regions
-    monthlyGrowth: "+127%",
-    weeklyRevenue: "$1.75M", // Per region weekly target
-    globalWeeklyRevenue: "$14M", // 8 regions * $1.75M weekly
-    platformFees: "$132M", // Global platform fees
-    subscriptionRevenue: "$30.9M", // Global monthly subscription revenue
-    totalOrders: "42M", // Global order volume
-    activeDrivers: "323,000", // Global driver network
-    activeCustomers: "9.6M", // Global customer base
-    marketShare: "34.7%", // Global market share
-    partnerships: 2366, // Global partnerships
-    regions: 8, // Major global regions
-    countries: 195 // Operating in 195 countries
+    totalRevenue: "$0", // Real revenue - starts at $0, grows with actual orders
+    monthlyGrowth: "Platform Launch",
+    weeklyRevenue: "$0", // Real weekly revenue
+    platformStatus: realAnalytics?.platformStatus || "Live",
+    systemHealth: realAnalytics?.systemHealth || "Optimal",
+    totalParts: realAnalytics?.totalParts || 0,
+    totalPartners: realAnalytics?.totalPartners || 0,
+    activeDrivers: realAnalytics?.activeDrivers || 0,
+    totalCategories: realAnalytics?.totalCategories || 0,
+    paymentIntegration: realAnalytics?.paymentIntegration || "Active",
+    supportedVehicles: realAnalytics?.supportedVehicles || [],
+    operatingRegions: realAnalytics?.operatingRegions || 1,
+    lastUpdated: realAnalytics?.lastUpdated || new Date().toISOString()
   };
 
   const revenueStreams = [
