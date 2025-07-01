@@ -4,6 +4,8 @@ import { storage } from "./storage";
 import { insertUserSchema, insertDriverSchema, insertOrderSchema, insertOrderItemSchema } from "@shared/schema";
 import { z } from "zod";
 import { automationEngine } from "./automation";
+import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
+import { processBankPayment, getBankingStatus, getRevenueTransfers } from "./banking";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -402,6 +404,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch current order" });
     }
+  });
+
+  // PayPal Payment Routes
+  app.get("/api/paypal/setup", async (req, res) => {
+    await loadPaypalDefault(req, res);
+  });
+
+  app.post("/api/paypal/order", async (req, res) => {
+    // Request body should contain: { intent, amount, currency }
+    await createPaypalOrder(req, res);
+  });
+
+  app.post("/api/paypal/order/:orderID/capture", async (req, res) => {
+    await capturePaypalOrder(req, res);
+  });
+
+  // Direct Banking Payment Routes
+  app.post("/api/banking/payment", async (req, res) => {
+    await processBankPayment(req, res);
+  });
+
+  app.get("/api/banking/status", async (req, res) => {
+    await getBankingStatus(req, res);
+  });
+
+  app.get("/api/banking/transfers", async (req, res) => {
+    await getRevenueTransfers(req, res);
   });
 
   const httpServer = createServer(app);

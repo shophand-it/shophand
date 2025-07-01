@@ -7,6 +7,7 @@ import { useState } from "react";
 import Home from "@/pages/home";
 import DriverDashboard from "@/pages/driver-dashboard";
 import BusinessDashboard from "@/pages/business-dashboard";
+import Checkout from "@/pages/checkout";
 import NotFound from "@/pages/not-found";
 import NavigationHeader from "@/components/shared/navigation-header";
 import BottomNavigation from "@/components/shared/bottom-navigation";
@@ -32,6 +33,9 @@ function Router() {
         </Route>
         <Route path="/business">
           <BusinessDashboard />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
         </Route>
         <Route component={NotFound} />
       </Switch>
