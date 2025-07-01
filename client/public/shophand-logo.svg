@@ -38,8 +38,20 @@
     Need a part? Shop Hand it!
   </text>
   
-  <!-- Simple speed accent -->
-  <rect x="200" y="20" width="30" height="4" rx="2" fill="url(#gold)" opacity="0.8"/>
-  <rect x="205" y="28" width="20" height="3" rx="1.5" fill="url(#gold)" opacity="0.6"/>
-  <rect x="210" y="35" width="12" height="2" rx="1" fill="url(#gold)" opacity="0.4"/>
+  <!-- Delivery truck -->
+  <g transform="translate(200, 15)">
+    <rect x="0" y="10" width="18" height="10" rx="2" fill="url(#black)" stroke="url(#gold)" stroke-width="2"/>
+    <rect x="18" y="12" width="8" height="8" rx="1" fill="url(#black)" stroke="url(#gold)" stroke-width="2"/>
+    
+    <!-- Wheels -->
+    <circle cx="5" cy="23" r="2.5" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
+    <circle cx="21" cy="23" r="2.5" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
+    <circle cx="5" cy="23" r="1.2" fill="url(#black)"/>
+    <circle cx="21" cy="23" r="1.2" fill="url(#black)"/>
+    
+    <!-- Speed lines -->
+    <line x1="30" y1="14" x2="38" y2="14" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="30" y1="18" x2="35" y2="18" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="30" y1="22" x2="33" y2="22" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+  </g>
 </svg>
