@@ -34,7 +34,7 @@
   
   <!-- Clean tagline -->
   <text x="0" y="52" font-family="Arial, sans-serif" font-size="12" font-weight="600" 
-        fill="url(#black)" opacity="0.8">
+        fill="url(#gold)" opacity="0.9">
     Need a part? Shop Hand it!
   </text>
   
