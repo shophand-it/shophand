@@ -32,16 +32,13 @@ export default function NavigationHeader({
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="relative w-10 h-10 bg-neural-gradient rounded-lg flex items-center justify-center ai-quantum-glow">
-              <Brain className="text-white text-lg ai-status-active" />
-              <div className="absolute -top-1 -right-1">
-                <Sparkles className="w-3 h-3 text-luxury-gold animate-pulse" />
-              </div>
-            </div>
-            <div>
-              <h1 className="luxury-text text-xl font-bold">ShopHand™</h1>
-              <p className="cyber-text text-xs">Need a part? Shop Hand it!</p>
-            </div>
+            {/* ShopHand Logo */}
+            <img 
+              src="/shophand-logo.svg" 
+              alt="ShopHand™ - Fast Parts Delivery" 
+              className="h-12 w-auto ai-luxury-shimmer"
+              style={{ filter: 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.3))' }}
+            />
           </div>
           
           <div className="flex items-center space-x-4">
