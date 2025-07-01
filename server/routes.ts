@@ -260,6 +260,114 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Driver Stats Mock Data
+  app.get("/api/drivers/stats", async (req, res) => {
+    try {
+      const mockStats = {
+        deliveries: 8,
+        earnings: "$127.50", 
+        rating: 4.9,
+        onlineTime: "6h 42m",
+        isOnline: true
+      };
+      res.json(mockStats);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch driver stats" });
+    }
+  });
+
+  // Available Pickups Mock Data
+  app.get("/api/drivers/pickups", async (req, res) => {
+    try {
+      const mockPickups = [
+        {
+          id: 1,
+          orderNumber: "SH-2024-002",
+          totalEarnings: "$18.50",
+          distance: "2.1 mi",
+          estimatedTime: "15 min",
+          items: "Engine Air Filter + Oil Filter",
+          pickup: {
+            name: "AutoZone", 
+            address: "1234 Commerce Way",
+            type: "store"
+          },
+          delivery: {
+            customerName: "Sarah Wilson",
+            address: "789 Oak Street"
+          }
+        },
+        {
+          id: 2,
+          orderNumber: "SH-2024-003", 
+          totalEarnings: "$45.75",
+          distance: "5.3 mi",
+          estimatedTime: "25 min",
+          items: "Snowmobile Track Assembly",
+          pickup: {
+            name: "Motorcycle Salvage",
+            address: "1500 Salvage Way", 
+            type: "dismantler"
+          },
+          delivery: {
+            customerName: "Mike Thompson",
+            address: "456 Mountain View Dr"
+          }
+        },
+        {
+          id: 3,
+          orderNumber: "SH-2024-004",
+          totalEarnings: "$125.00", 
+          distance: "12.7 mi",
+          estimatedTime: "35 min",
+          items: "Aircraft Avionics Package",
+          pickup: {
+            name: "Aircraft Spruce",
+            address: "7700 Aviation Way",
+            type: "store"
+          },
+          delivery: {
+            customerName: "Pilot Services LLC",
+            address: "8800 Hangar Row"
+          }
+        }
+      ];
+      res.json(mockPickups);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch available pickups" });
+    }
+  });
+
+  // Business Analytics Mock Data
+  app.get("/api/business/analytics", async (req, res) => {
+    try {
+      const analytics = automationEngine.getRevenueMetrics();
+      res.json(analytics);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch business analytics" });
+    }
+  });
+
+  // Performance Metrics
+  app.get("/api/business/performance", async (req, res) => {
+    try {
+      const performance = automationEngine.getPerformanceMetrics();
+      res.json(performance);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch performance metrics" });
+    }
+  });
+
+  // Pricing Engine Data
+  app.get("/api/business/pricing", async (req, res) => {
+    try {
+      const pricing = automationEngine.getPricingEngine();
+      res.json(pricing);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch pricing data" });
+    }
+  });
+
   // Mock order for demonstration
   app.get("/api/orders/mock/current", async (req, res) => {
     try {
