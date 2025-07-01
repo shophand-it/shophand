@@ -8,11 +8,12 @@ export class AutomationEngine {
   
   // Revenue automation metrics
   private revenueMetrics = {
-    monthlyRecurring: 1750000,
-    dailyTarget: 58333,
-    hourlyAverage: 2430,
+    weeklyRecurring: 1750000, // $1.75M weekly target
+    monthlyRecurring: 7583333, // $1.75M weekly * 4.33 weeks
+    dailyTarget: 250000, // $1.75M weekly / 7 days
+    hourlyAverage: 10417, // $250K daily / 24 hours
     subscriptionGrowth: 12.3,
-    enterpriseContracts: 12
+    enterpriseContracts: 52 // Scaled up for higher revenue
   };
 
   // Performance monitoring
@@ -20,9 +21,9 @@ export class AutomationEngine {
     systemUptime: 99.97,
     responseTime: 45,
     crashFreeRate: 99.94,
-    activeUsers: 12847,
-    ordersProcessed: 428,
-    apiCallsToday: 2847593
+    activeUsers: 55847, // Scaled up for higher revenue volume
+    ordersProcessed: 1847, // Higher order processing for $250K daily
+    apiCallsToday: 12347593 // Increased API calls for higher traffic
   };
 
   // Automated pricing algorithms
