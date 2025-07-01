@@ -42,58 +42,58 @@ export function AIAssistant({ mode = 'customer' }: AIAssistantProps) {
     if (mode === 'customer') {
       if (userQuery.toLowerCase().includes('brake')) {
         response = {
-          message: "Based on your 2020 BMW 3 Series, I recommend premium ceramic brake pads for optimal performance. Found 3 suppliers with same-day delivery.",
+          message: "Found BMW 3 Series brake pads at 4 nearby suppliers. AutoZone has same-day delivery for $89, BMW dealership premium for $156. Best price: Parts Plus at $67.",
           suggestions: [
-            "View compatible brake pads",
-            "Compare supplier prices",
-            "Schedule installation"
+            "Order from AutoZone (2hr delivery)",
+            "Compare all 4 suppliers", 
+            "Track delivery status"
+          ],
+          confidence: 0.98,
+          type: 'search'
+        };
+      } else if (userQuery.toLowerCase().includes('engine')) {
+        response = {
+          message: "Engine mount available at 3 suppliers within 5 miles. Fastest delivery: NAPA Auto Parts - 1.5 hours. Installation service available through certified mechanics.",
+          suggestions: [
+            "Order from NAPA (fastest)",
+            "Find installation service",
+            "Schedule pickup instead"
           ],
           confidence: 0.94,
           type: 'recommendation'
         };
-      } else if (userQuery.toLowerCase().includes('engine')) {
-        response = {
-          message: "Neural analysis suggests checking your engine mount. AI-detected vibration patterns indicate potential wear. Predicted replacement in 2-3 months.",
-          suggestions: [
-            "Order engine mount now",
-            "Schedule diagnostic",
-            "View maintenance timeline"
-          ],
-          confidence: 0.87,
-          type: 'prediction'
-        };
       } else {
         response = {
-          message: "AI searching across 15,000+ parts database... Found optimal matches for your vehicle using quantum search algorithms.",
+          message: "Scanning 47 local suppliers and 15,000+ parts inventory. Found 12 compatible options with delivery times from 45 minutes to same-day.",
           suggestions: [
-            "View all results",
-            "Filter by price",
-            "Sort by delivery time"
+            "View fastest delivery",
+            "Sort by price",
+            "Filter by supplier rating"
           ],
-          confidence: 0.91,
+          confidence: 0.96,
           type: 'search'
         };
       }
     } else if (mode === 'driver') {
       response = {
-        message: "AI route optimization active. Detected high-demand area with 5 premium aircraft part deliveries. Predicted earnings: $380 in next 3 hours.",
+        message: "Optimal delivery route detected: 6 parts pickups within 8-mile radius. Total earnings: $340 in 2.5 hours. Heavy marine engine at Harbor Freight pays premium $85.",
         suggestions: [
-          "Accept optimal route",
-          "View detailed breakdown",
-          "Set delivery preferences"
+          "Accept optimized route",
+          "Skip heavy items only",
+          "View pickup locations"
         ],
-        confidence: 0.96,
+        confidence: 0.97,
         type: 'analysis'
       };
     } else {
       response = {
-        message: "Predictive analytics show 23% increase in marine part demand. AI recommends stocking watercraft engines and propellers for summer season.",
+        message: "Parts delivery surge: 340% increase in brake pad orders this week. Recommend partnering with 3 new auto parts stores. Average delivery time: 47 minutes.",
         suggestions: [
-          "View inventory recommendations",
-          "Analyze market trends",
-          "Set automated ordering"
+          "Contact new suppliers",
+          "Analyze delivery patterns",
+          "Optimize warehouse locations"
         ],
-        confidence: 0.89,
+        confidence: 0.92,
         type: 'prediction'
       };
     }
@@ -125,13 +125,13 @@ export function AIAssistant({ mode = 'customer' }: AIAssistantProps) {
   const getAICapabilityDescription = () => {
     switch (mode) {
       case 'customer':
-        return 'Smart Part Recognition • Predictive Maintenance • Visual Search';
+        return 'Instant Parts ID • Delivery Tracking • Supplier Matching';
       case 'driver':
-        return 'Route Optimization • Earnings Prediction • Traffic Analysis';
+        return 'Delivery Routes • Pickup Optimization • Real-Time Updates';
       case 'business':
-        return 'Market Intelligence • Inventory AI • Demand Forecasting';
+        return 'Supply Chain AI • Delivery Analytics • Parts Forecasting';
       default:
-        return 'AI-Powered Intelligence Platform';
+        return 'AI-Powered Parts Delivery Platform';
     }
   };
 

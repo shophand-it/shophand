@@ -6,6 +6,8 @@ import AIRecommendations from "@/components/customer/ai-recommendations";
 import MobileFeatures from "@/components/mobile/mobile-features";
 import { AIAssistant } from "@/components/ai/ai-assistant";
 import { NeuralNetworkBG } from "@/components/ai/neural-network-bg";
+import { PartsDeliveryTracker } from "@/components/delivery/parts-delivery-tracker";
+import { PartsSearchDelivery } from "@/components/delivery/parts-search-delivery";
 
 export default function Home() {
   // Detect if running in mobile app environment
@@ -31,26 +33,44 @@ export default function Home() {
       
       <MobileFeatures isNative={isNative} />
       
-      {/* Enhanced Content Sections with Futuristic Cards */}
+      {/* Enhanced Content Sections with Parts Delivery Focus */}
       <div className="space-y-8 px-4">
+        {/* Primary Focus: Active Deliveries */}
         <div className="futuristic-card">
           <div className="futuristic-card-content">
-            <AIRecommendations />
+            <PartsDeliveryTracker />
           </div>
         </div>
         
+        {/* Parts Search with Delivery Focus */}
+        <div className="futuristic-card">
+          <div className="futuristic-card-content">
+            <PartsSearchDelivery />
+          </div>
+        </div>
+        
+        {/* Categories */}
         <div className="futuristic-card">
           <div className="futuristic-card-content">
             <CategoryGrid />
           </div>
         </div>
         
+        {/* Featured Parts for Quick Ordering */}
         <div className="futuristic-card">
           <div className="futuristic-card-content">
             <FeaturedParts />
           </div>
         </div>
         
+        {/* AI-Powered Recommendations */}
+        <div className="futuristic-card">
+          <div className="futuristic-card-content">
+            <AIRecommendations />
+          </div>
+        </div>
+        
+        {/* Legacy Order Tracking */}
         <div className="futuristic-card">
           <div className="futuristic-card-content">
             <OrderTracking />

@@ -96,8 +96,8 @@ export default function BusinessDashboard() {
         {/* Luxury Header with AI Enhancement */}
         <div className="mb-8 relative">
           <div className="absolute -top-4 left-0 w-full h-1 bg-luxury-gradient ai-luxury-shimmer" />
-          <h1 className="ai-heading text-4xl mb-2">Business Intelligence Dashboard</h1>
-          <p className="cyber-text">Scaling ShopHand™ to billion-dollar valuation</p>
+          <h1 className="ai-heading text-4xl mb-2">Parts Delivery Analytics</h1>
+          <p className="cyber-text">Real-time supply chain & delivery performance</p>
         </div>
 
         {/* Key Metrics Overview */}

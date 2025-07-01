@@ -40,7 +40,7 @@ export default function NavigationHeader({
             </div>
             <div>
               <h1 className="luxury-text text-xl font-bold">ShopHand AI™</h1>
-              <p className="cyber-text text-xs">Neural-Powered Parts Platform</p>
+              <p className="cyber-text text-xs">Instant Parts Delivery</p>
             </div>
           </div>
           
