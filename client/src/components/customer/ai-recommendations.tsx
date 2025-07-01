@@ -98,7 +98,7 @@ export default function AIRecommendations() {
         <CardHeader>
           <CardTitle className="text-white flex items-center">
             <Sparkles className="w-5 h-5 mr-2 text-gold-500" />
-            AI-Powered Part Recommendations
+            Smart Part Recommendations
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -107,7 +107,7 @@ export default function AIRecommendations() {
             <h3 className="text-xl font-bold text-white mb-2">Premium Feature</h3>
             <p className="text-gray-400 mb-6">
               Get personalized part recommendations based on your vehicle's needs, 
-              driving patterns, and maintenance history.
+              maintenance history, and popular parts.
             </p>
             <Button 
               onClick={() => setShowUpgradeModal(true)}
@@ -138,8 +138,8 @@ export default function AIRecommendations() {
         <div className="flex items-center">
           <Sparkles className="w-6 h-6 text-gold-500 mr-3" />
           <div>
-            <h2 className="text-2xl font-bold text-white">AI Recommendations</h2>
-            <p className="text-gray-400">Personalized for your 2020 BMW 3 Series</p>
+            <h2 className="text-2xl font-bold text-white">Smart Recommendations</h2>
+            <p className="text-gray-400">Based on your 2020 BMW 3 Series</p>
           </div>
         </div>
         <Badge className="bg-gold-500 text-automotive-black-900 font-bold">

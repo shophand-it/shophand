@@ -18,19 +18,8 @@ export default function Home() {
 
   return (
     <div className="relative pb-20 md:pb-0 neural-bg min-h-screen">
-      {/* Neural Network Background */}
-      <NeuralNetworkBG intensity="medium" color="neural" />
-      
-      {/* AI Assistant Floating Panel */}
-      <div className="fixed top-20 right-4 z-50 w-80 max-w-[calc(100vw-2rem)] md:w-96">
-        <AIAssistant mode="customer" />
-      </div>
-      
-      {/* Futuristic Hero with AI Enhancement */}
-      <div className="relative">
-        <div className="absolute top-0 left-0 w-full h-2 bg-neural-gradient ai-cyber-scan" />
-        <HeroSection />
-      </div>
+      {/* Clean Hero Section */}
+      <HeroSection />
       
       <MobileFeatures isNative={isNative} />
       
@@ -64,7 +53,7 @@ export default function Home() {
           </div>
         </div>
         
-        {/* AI-Powered Recommendations */}
+        {/* Smart Recommendations */}
         <div className="futuristic-card">
           <div className="futuristic-card-content">
             <AIRecommendations />
