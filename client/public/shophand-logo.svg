@@ -56,7 +56,6 @@
   
   <!-- Main Logo Shield -->
   <path d="M15 20 L75 10 L75 70 L45 85 L15 70 Z" fill="url(#blackRadial)" stroke="url(#goldMetallic)" stroke-width="4" filter="url(#deepShadow)"/>
-  <path d="M20 24 L70 15 L70 65 L45 78 L20 65 Z" fill="url(#carbonTexture)" opacity="0.3"/>
   
   <!-- Premium Hand with Parts -->
   <g transform="translate(25, 25)">
