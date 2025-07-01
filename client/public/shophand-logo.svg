@@ -1,70 +1,45 @@
-<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+<svg width="280" height="60" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Simple Gold Gradient -->
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Gold Gradient -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Clean Black -->
-    <linearGradient id="black" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+    <!-- Black -->
+    <linearGradient id="black" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Simple Shadow -->
-    <filter id="shadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    <!-- Text Shadow -->
+    <filter id="textShadow">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
     </filter>
   </defs>
   
-  <!-- Simple Hand Icon -->
-  <g transform="translate(10, 15)">
-    <circle cx="25" cy="25" r="20" fill="url(#black)" stroke="url(#gold)" stroke-width="3" filter="url(#shadow)"/>
-    
-    <!-- Simple Hand -->
-    <path d="M15 20 L25 15 L35 20 L35 30 L25 35 L15 30 Z" fill="url(#gold)" stroke="#DAA520" stroke-width="1"/>
-    
-    <!-- Part in hand -->
-    <circle cx="25" cy="12" r="4" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
-    <circle cx="25" cy="12" r="2" fill="url(#black)"/>
-    
-    <!-- Simple gear teeth -->
-    <rect x="24" y="8" width="2" height="2" fill="url(#gold)"/>
-    <rect x="24" y="14" width="2" height="2" fill="url(#gold)"/>
-    <rect x="21" y="11" width="2" height="2" fill="url(#gold)"/>
-    <rect x="27" y="11" width="2" height="2" fill="url(#gold)"/>
-  </g>
-  
   <!-- Company Name -->
-  <text x="70" y="35" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="url(#black)">
+  <text x="0" y="35" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
+        fill="url(#black)" filter="url(#textShadow)">
     Shop
   </text>
-  <text x="140" y="35" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="url(#gold)">
+  <text x="80" y="35" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
+        fill="url(#gold)" filter="url(#textShadow)">
     Hand
   </text>
-  <text x="210" y="35" font-family="Arial, sans-serif" font-size="20" fill="url(#gold)">
+  <text x="170" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+        fill="url(#gold)">
     ™
   </text>
   
-  <!-- Simple tagline -->
-  <text x="70" y="55" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="url(#black)">
-    PARTS DELIVERED FAST
+  <!-- Clean tagline -->
+  <text x="0" y="52" font-family="Arial, sans-serif" font-size="12" font-weight="600" 
+        fill="url(#black)" opacity="0.8">
+    Need a part? Shop Hand it!
   </text>
   
-  <!-- Simple truck icon -->
-  <g transform="translate(230, 15)">
-    <rect x="0" y="15" width="20" height="12" rx="2" fill="url(#black)" stroke="url(#gold)" stroke-width="2"/>
-    <rect x="20" y="18" width="8" height="9" rx="1" fill="url(#black)" stroke="url(#gold)" stroke-width="2"/>
-    
-    <!-- Wheels -->
-    <circle cx="5" cy="30" r="3" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
-    <circle cx="23" cy="30" r="3" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
-    <circle cx="5" cy="30" r="1.5" fill="url(#black)"/>
-    <circle cx="23" cy="30" r="1.5" fill="url(#black)"/>
-    
-    <!-- Speed lines -->
-    <line x1="35" y1="20" x2="42" y2="20" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
-    <line x1="35" y1="25" x2="40" y2="25" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
-  </g>
+  <!-- Simple speed accent -->
+  <rect x="200" y="20" width="30" height="4" rx="2" fill="url(#gold)" opacity="0.8"/>
+  <rect x="205" y="28" width="20" height="3" rx="1.5" fill="url(#gold)" opacity="0.6"/>
+  <rect x="210" y="35" width="12" height="2" rx="1" fill="url(#gold)" opacity="0.4"/>
 </svg>
