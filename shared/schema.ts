@@ -1,6 +1,18 @@
-import { pgTable, text, serial, integer, boolean, decimal, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, decimal, timestamp, jsonb, index, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
+import { relations } from "drizzle-orm";
+
+// Session storage table for authentication
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -17,6 +29,8 @@ export const users = pgTable("users", {
   businessName: text("business_name"),
   businessType: text("business_type"), // repair_shop, fleet, dealership
   taxId: text("tax_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const drivers = pgTable("drivers", {

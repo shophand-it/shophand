@@ -10,7 +10,12 @@ import { PartsDeliveryTracker } from "@/components/delivery/parts-delivery-track
 import { PartsSearchDelivery } from "@/components/delivery/parts-search-delivery";
 import { ComplianceNotice } from "@/components/legal/compliance-notice";
 
-export default function Home() {
+interface HomeProps {
+  isAuthenticated?: boolean;
+  onShowAuth?: () => void;
+}
+
+export default function Home({ isAuthenticated, onShowAuth }: HomeProps = {}) {
   // Detect if running in mobile app environment
   const isNative = typeof window !== 'undefined' && 
     (window.navigator?.userAgent?.includes('CapacitorJS') || 

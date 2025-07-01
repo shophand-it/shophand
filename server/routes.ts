@@ -6,8 +6,12 @@ import { z } from "zod";
 import { automationEngine } from "./automation";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processBankPayment, getBankingStatus, getRevenueTransfers } from "./banking";
+import { setupAuth, requireAuth, requireUserType } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // Setup authentication
+  setupAuth(app);
   
   // Categories
   app.get("/api/categories", async (req, res) => {
@@ -401,6 +405,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(pricing);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch pricing data" });
+    }
+  });
+
+  // Driver registration and management
+  app.post("/api/drivers/register", requireAuth, async (req, res) => {
+    try {
+      const driverData = insertDriverSchema.parse({
+        ...req.body,
+        userId: req.session.userId,
+      });
+      
+      const driver = await storage.createDriver(driverData);
+      res.json(driver);
+    } catch (error) {
+      console.error("Error registering driver:", error);
+      res.status(500).json({ error: "Failed to register driver" });
+    }
+  });
+
+  app.get("/api/drivers/profile", requireAuth, async (req, res) => {
+    try {
+      const driver = await storage.getDriverByUserId(req.session.userId);
+      if (!driver) {
+        return res.status(404).json({ error: "Driver profile not found" });
+      }
+      res.json(driver);
+    } catch (error) {
+      console.error("Error fetching driver profile:", error);
+      res.status(500).json({ error: "Failed to fetch driver profile" });
+    }
+  });
+
+  app.post("/api/drivers/status", requireAuth, async (req, res) => {
+    try {
+      const { isOnline } = req.body;
+      const driver = await storage.getDriverByUserId(req.session.userId);
+      
+      if (!driver) {
+        return res.status(404).json({ error: "Driver profile not found" });
+      }
+
+      await storage.updateDriverStatus(driver.id, isOnline);
+      res.json({ message: "Status updated successfully" });
+    } catch (error) {
+      console.error("Error updating driver status:", error);
+      res.status(500).json({ error: "Failed to update status" });
+    }
+  });
+
+  app.post("/api/drivers/accept-pickup/:orderId", requireAuth, async (req, res) => {
+    try {
+      const orderId = parseInt(req.params.orderId);
+      const driver = await storage.getDriverByUserId(req.session.userId);
+      
+      if (!driver) {
+        return res.status(404).json({ error: "Driver profile not found" });
+      }
+
+      await storage.assignDriverToOrder(orderId, driver.id);
+      await storage.updateOrderStatus(orderId, "assigned");
+      
+      res.json({ message: "Pickup accepted successfully" });
+    } catch (error) {
+      console.error("Error accepting pickup:", error);
+      res.status(500).json({ error: "Failed to accept pickup" });
     }
   });
 
