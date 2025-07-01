@@ -1,187 +1,172 @@
-<svg width="350" height="100" viewBox="0 0 350 100" xmlns="http://www.w3.org/2000/svg">
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Ultra Premium Gold Gradients -->
-    <radialGradient id="goldRadial" cx="50%" cy="30%" r="70%">
-      <stop offset="0%" style="stop-color:#FFFDF0;stop-opacity:1" />
-      <stop offset="20%" style="stop-color:#FFD700;stop-opacity:1" />
-      <stop offset="60%" style="stop-color:#DAA520;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8B7000;stop-opacity:1" />
-    </radialGradient>
-    
-    <linearGradient id="goldMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- High Definition Gold Gradients -->
+    <linearGradient id="premiumGold" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
-      <stop offset="15%" style="stop-color:#FFD700;stop-opacity:1" />
-      <stop offset="40%" style="stop-color:#DAA520;stop-opacity:1" />
-      <stop offset="70%" style="stop-color:#B8860B;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#996515;stop-opacity:1" />
+      <stop offset="20%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DAA520;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#B8860B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B7000;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Premium Black Gradients -->
-    <radialGradient id="blackRadial" cx="50%" cy="50%" r="80%">
-      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+    <radialGradient id="goldHighlight" cx="40%" cy="20%" r="60%">
+      <stop offset="0%" style="stop-color:#FFFACD;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Professional Black Gradients -->
+    <linearGradient id="richBlack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
       <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="deepBlack" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#1a1a1a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
     </radialGradient>
     
-    <linearGradient id="carbonFiber" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
-    </linearGradient>
-    
-    <!-- Advanced Filters -->
-    <filter id="ultimateGlow">
-      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 2 0"/>
+    <!-- HD Filters and Effects -->
+    <filter id="goldGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feColorMatrix type="matrix" values="1 0.8 0 0 0  0 1 0.2 0 0  0 0 0.8 0 0  0 0 0 1.5 0"/>
       <feMerge> 
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
     
-    <filter id="deepShadow">
-      <feDropShadow dx="6" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.8"/>
+    <filter id="premiumShadow">
+      <feDropShadow dx="4" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.6"/>
     </filter>
     
-    <filter id="emboss">
-      <feConvolveMatrix order="3" kernelMatrix="2 0 0 0 -1 0 0 0 -1"/>
+    <filter id="innerShadow">
+      <feOffset dx="0" dy="2"/>
+      <feGaussianBlur stdDeviation="2" result="offset-blur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.3"/>
+      <feComposite in2="offset-blur" operator="in"/>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
     </filter>
-    
-    <!-- Textures -->
-    <pattern id="carbonTexture" patternUnits="userSpaceOnUse" width="4" height="4">
-      <rect width="4" height="4" fill="#1a1a1a"/>
-      <circle cx="2" cy="2" r="0.5" fill="#333"/>
-    </pattern>
   </defs>
   
-  <!-- Main Logo Shield -->
-  <path d="M15 20 L75 10 L75 70 L45 85 L15 70 Z" fill="url(#blackRadial)" stroke="url(#goldMetallic)" stroke-width="4" filter="url(#deepShadow)"/>
+  <!-- Main Logo Circle -->
+  <circle cx="60" cy="60" r="50" fill="url(#deepBlack)" stroke="url(#premiumGold)" stroke-width="4" filter="url(#premiumShadow)"/>
+  <circle cx="60" cy="60" r="45" fill="none" stroke="url(#goldHighlight)" stroke-width="1" opacity="0.6"/>
   
-  <!-- Premium Hand with Parts -->
-  <g transform="translate(25, 25)">
-    <!-- Detailed Strong Hand -->
-    <path d="M5 15 C8 10 15 8 22 12 L30 18 C35 22 35 30 30 36 L22 45 C18 48 12 48 5 44 L2 36 C-2 30 -2 22 2 18 Z" 
-          fill="url(#goldRadial)" stroke="url(#goldMetallic)" stroke-width="2.5" filter="url(#ultimateGlow)"/>
+  <!-- Professional Hand -->
+  <g transform="translate(35, 35)">
+    <!-- Main Hand Shape -->
+    <path d="M10 15 C12 10 20 8 28 12 L35 18 C40 22 40 32 35 38 L28 48 C24 52 16 52 10 48 L5 38 C0 32 0 22 5 18 Z" 
+          fill="url(#goldHighlight)" stroke="url(#premiumGold)" stroke-width="2" filter="url(#goldGlow)"/>
     
-    <!-- Hand Knuckles and Details -->
-    <ellipse cx="15" cy="25" rx="3" ry="2" fill="url(#goldMetallic)" opacity="0.8"/>
-    <ellipse cx="20" cy="27" rx="2.5" ry="1.5" fill="url(#goldMetallic)" opacity="0.8"/>
-    <ellipse cx="25" cy="29" rx="2" ry="1" fill="url(#goldMetallic)" opacity="0.8"/>
+    <!-- Hand Details -->
+    <ellipse cx="20" cy="28" rx="4" ry="2.5" fill="url(#premiumGold)" opacity="0.8"/>
+    <ellipse cx="25" cy="30" rx="3" ry="2" fill="url(#premiumGold)" opacity="0.8"/>
+    <ellipse cx="30" cy="32" rx="2.5" ry="1.5" fill="url(#premiumGold)" opacity="0.8"/>
     
-    <!-- Thumb Detail -->
-    <path d="M8 25 C12 22 18 25 22 28 C25 31 22 37 18 40 C14 43 8 40 5 36 Z" 
-          fill="url(#goldMetallic)" stroke="#DAA520" stroke-width="1.5" opacity="0.9"/>
+    <!-- Thumb -->
+    <path d="M12 28 C16 25 22 28 26 31 C29 34 26 40 22 43 C18 46 12 43 9 39 Z" 
+          fill="url(#premiumGold)" stroke="#DAA520" stroke-width="1" opacity="0.9"/>
     
-    <!-- Ultra-Detailed Auto Part -->
-    <g transform="translate(32, 8)">
-      <!-- Outer gear ring -->
-      <circle cx="0" cy="0" r="9" fill="url(#carbonFiber)" stroke="url(#goldMetallic)" stroke-width="2"/>
-      <!-- Inner gear -->
-      <circle cx="0" cy="0" r="6" fill="url(#goldRadial)"/>
-      <circle cx="0" cy="0" r="3" fill="url(#blackRadial)"/>
+    <!-- Auto Part - High Detail Gear -->
+    <g transform="translate(40, 12)">
+      <circle cx="0" cy="0" r="10" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="7" fill="url(#goldHighlight)"/>
+      <circle cx="0" cy="0" r="4" fill="url(#deepBlack)"/>
       
-      <!-- 12 Precision Gear Teeth -->
-      <rect x="-1" y="-12" width="2" height="4" fill="url(#goldMetallic)"/>
-      <rect x="-1" y="8" width="2" height="4" fill="url(#goldMetallic)"/>
-      <rect x="-12" y="-1" width="4" height="2" fill="url(#goldMetallic)"/>
-      <rect x="8" y="-1" width="4" height="2" fill="url(#goldMetallic)"/>
+      <!-- 8 Main Gear Teeth -->
+      <rect x="-1.5" y="-13" width="3" height="5" rx="1" fill="url(#premiumGold)"/>
+      <rect x="-1.5" y="8" width="3" height="5" rx="1" fill="url(#premiumGold)"/>
+      <rect x="-13" y="-1.5" width="5" height="3" rx="1" fill="url(#premiumGold)"/>
+      <rect x="8" y="-1.5" width="5" height="3" rx="1" fill="url(#premiumGold)"/>
       
-      <rect x="-8.5" y="-8.5" width="3" height="2" fill="url(#goldMetallic)" transform="rotate(45)"/>
-      <rect x="5.5" y="-8.5" width="3" height="2" fill="url(#goldMetallic)" transform="rotate(45)"/>
-      <rect x="-8.5" y="6.5" width="3" height="2" fill="url(#goldMetallic)" transform="rotate(45)"/>
-      <rect x="5.5" y="6.5" width="3" height="2" fill="url(#goldMetallic)" transform="rotate(45)"/>
+      <rect x="-9" y="-9" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(45)"/>
+      <rect x="5" y="-9" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(-45)"/>
+      <rect x="-9" y="7" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(-45)"/>
+      <rect x="5" y="7" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(45)"/>
       
-      <rect x="-6" y="-10" width="2" height="3" fill="url(#goldMetallic)" transform="rotate(30)"/>
-      <rect x="4" y="-10" width="2" height="3" fill="url(#goldMetallic)" transform="rotate(-30)"/>
-      <rect x="-6" y="7" width="2" height="3" fill="url(#goldMetallic)" transform="rotate(-30)"/>
-      <rect x="4" y="7" width="2" height="3" fill="url(#goldMetallic)" transform="rotate(30)"/>
-      
-      <!-- Center bolt -->
-      <circle cx="0" cy="0" r="1.5" fill="url(#goldMetallic)"/>
-      <circle cx="0" cy="0" r="0.8" fill="url(#blackRadial)"/>
+      <!-- Center Detail -->
+      <circle cx="0" cy="0" r="2" fill="url(#premiumGold)" filter="url(#innerShadow)"/>
+      <circle cx="0" cy="0" r="1" fill="url(#deepBlack)"/>
     </g>
     
     <!-- Professional Wrench -->
-    <rect x="20" y="30" width="20" height="5" rx="2.5" fill="url(#carbonFiber)" stroke="url(#goldMetallic)" stroke-width="1.5"/>
-    <rect x="38" y="27" width="10" height="11" rx="4" fill="url(#carbonFiber)" stroke="url(#goldMetallic)" stroke-width="1.5"/>
-    <rect x="40" y="30" width="6" height="5" rx="2" fill="url(#goldRadial)"/>
-    <line x1="22" y1="32.5" x2="36" y2="32.5" stroke="url(#goldMetallic)" stroke-width="1"/>
+    <rect x="25" y="38" width="22" height="6" rx="3" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="1.5"/>
+    <rect x="45" y="35" width="12" height="12" rx="5" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="1.5"/>
+    <rect x="47" y="38" width="8" height="6" rx="2" fill="url(#goldHighlight)"/>
+    <line x1="27" y1="41" x2="43" y2="41" stroke="url(#premiumGold)" stroke-width="1.5"/>
   </g>
   
-  <!-- Elite Delivery Truck -->
-  <g transform="translate(15, 60)">
-    <!-- Main truck body -->
-    <rect x="0" y="10" width="30" height="15" rx="4" fill="url(#blackRadial)" stroke="url(#goldMetallic)" stroke-width="3"/>
-    <rect x="30" y="12" width="12" height="13" rx="3" fill="url(#blackRadial)" stroke="url(#goldMetallic)" stroke-width="3"/>
+  <!-- Premium Delivery Truck -->
+  <g transform="translate(20, 80)">
+    <rect x="0" y="12" width="35" height="18" rx="5" fill="url(#deepBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
+    <rect x="35" y="15" width="15" height="15" rx="4" fill="url(#deepBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
     
-    <!-- Premium wheels -->
-    <circle cx="8" cy="28" r="5" fill="url(#carbonFiber)" stroke="url(#goldMetallic)" stroke-width="3"/>
-    <circle cx="34" cy="28" r="5" fill="url(#carbonFiber)" stroke="url(#goldMetallic)" stroke-width="3"/>
-    <circle cx="8" cy="28" r="3" fill="url(#goldRadial)"/>
-    <circle cx="34" cy="28" r="3" fill="url(#goldRadial)"/>
-    <circle cx="8" cy="28" r="1.5" fill="url(#blackRadial)"/>
-    <circle cx="34" cy="28" r="1.5" fill="url(#blackRadial)"/>
+    <!-- Premium Wheels -->
+    <circle cx="10" cy="35" r="6" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
+    <circle cx="40" cy="35" r="6" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
+    <circle cx="10" cy="35" r="4" fill="url(#goldHighlight)"/>
+    <circle cx="40" cy="35" r="4" fill="url(#goldHighlight)"/>
+    <circle cx="10" cy="35" r="2" fill="url(#deepBlack)"/>
+    <circle cx="40" cy="35" r="2" fill="url(#deepBlack)"/>
     
-    <!-- Luxury details -->
-    <rect x="3" y="13" width="8" height="4" rx="2" fill="url(#goldMetallic)" opacity="0.9"/>
-    <rect x="32" y="15" width="6" height="4" rx="1" fill="url(#goldMetallic)" opacity="0.9"/>
-    <line x1="5" y1="20" x2="25" y2="20" stroke="url(#goldMetallic)" stroke-width="2"/>
-    <rect x="10" y="22" width="15" height="2" rx="1" fill="url(#goldMetallic)" opacity="0.7"/>
+    <!-- Truck Details -->
+    <rect x="3" y="15" width="10" height="5" rx="2" fill="url(#goldHighlight)" opacity="0.9"/>
+    <rect x="37" y="18" width="8" height="5" rx="1" fill="url(#goldHighlight)" opacity="0.9"/>
+    <line x1="5" y1="24" x2="30" y2="24" stroke="url(#premiumGold)" stroke-width="2"/>
+    <rect x="12" y="26" width="18" height="3" rx="1" fill="url(#premiumGold)" opacity="0.8"/>
   </g>
   
-  <!-- Dynamic Speed Elements -->
-  <g opacity="0.95">
-    <line x1="90" y1="40" x2="105" y2="40" stroke="url(#goldMetallic)" stroke-width="5" stroke-linecap="round" filter="url(#ultimateGlow)"/>
-    <line x1="90" y1="50" x2="100" y2="50" stroke="url(#goldMetallic)" stroke-width="4" stroke-linecap="round" filter="url(#ultimateGlow)"/>
-    <line x1="90" y1="60" x2="95" y2="60" stroke="url(#goldMetallic)" stroke-width="3" stroke-linecap="round" filter="url(#ultimateGlow)"/>
-    
-    <!-- Speed particles -->
-    <circle cx="110" cy="38" r="1.5" fill="url(#goldRadial)" opacity="0.8"/>
-    <circle cx="105" cy="45" r="1" fill="url(#goldRadial)" opacity="0.6"/>
-    <circle cx="100" cy="55" r="0.8" fill="url(#goldRadial)" opacity="0.4"/>
+  <!-- Dynamic Speed Lines -->
+  <g opacity="0.9">
+    <line x1="120" y1="50" x2="138" y2="50" stroke="url(#premiumGold)" stroke-width="6" stroke-linecap="round" filter="url(#goldGlow)"/>
+    <line x1="120" y1="60" x2="132" y2="60" stroke="url(#premiumGold)" stroke-width="4" stroke-linecap="round" filter="url(#goldGlow)"/>
+    <line x1="120" y1="70" x2="126" y2="70" stroke="url(#premiumGold)" stroke-width="3" stroke-linecap="round" filter="url(#goldGlow)"/>
   </g>
   
-  <!-- Elite Company Branding -->
+  <!-- Premium Company Branding -->
   <g>
-    <!-- Premium Company Name -->
-    <text x="120" y="45" font-family="Oswald, Impact, Arial Black" font-size="42" font-weight="900" 
-          fill="url(#blackRadial)" stroke="url(#goldMetallic)" stroke-width="1.5" filter="url(#ultimateGlow)">
+    <!-- High Definition Company Name -->
+    <text x="150" y="55" font-family="Montserrat, Arial Black, sans-serif" font-size="48" font-weight="900" 
+          fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="1" filter="url(#goldGlow)">
       Shop
     </text>
-    <text x="200" y="45" font-family="Oswald, Impact, Arial Black" font-size="42" font-weight="900" 
-          fill="url(#goldRadial)" stroke="url(#goldMetallic)" stroke-width="1.5" filter="url(#ultimateGlow)">
+    <text x="240" y="55" font-family="Montserrat, Arial Black, sans-serif" font-size="48" font-weight="900" 
+          fill="url(#goldHighlight)" stroke="url(#premiumGold)" stroke-width="1" filter="url(#goldGlow)">
       Hand
     </text>
-    <text x="275" y="45" font-family="Times New Roman, serif" font-size="24" font-weight="bold" 
-          fill="url(#goldMetallic)" filter="url(#ultimateGlow)">
+    <text x="330" y="55" font-family="Times New Roman, serif" font-size="28" font-weight="bold" 
+          fill="url(#premiumGold)" filter="url(#goldGlow)">
       ™
     </text>
     
-    <!-- Elite Tagline -->
-    <text x="120" y="62" font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="700" 
-          fill="url(#blackRadial)" opacity="0.95">
-      ELITE PARTS DELIVERY
+    <!-- Professional Tagline -->
+    <text x="150" y="75" font-family="Open Sans, Arial, sans-serif" font-size="18" font-weight="700" 
+          fill="url(#richBlack)" opacity="0.95">
+      PROFESSIONAL PARTS DELIVERY
     </text>
     
-    <!-- Premium Slogan -->
-    <text x="120" y="78" font-family="Montserrat, Arial, sans-serif" font-size="12" font-weight="500" 
-          fill="url(#carbonFiber)" opacity="0.9">
+    <!-- Clean Slogan -->
+    <text x="150" y="95" font-family="Open Sans, Arial, sans-serif" font-size="14" font-weight="500" 
+          fill="url(#deepBlack)" opacity="0.8">
       Need a part? Shop Hand it!
     </text>
   </g>
   
-  <!-- Elite Badges -->
-  <rect x="300" y="15" width="35" height="20" rx="6" fill="url(#goldRadial)" stroke="url(#goldMetallic)" stroke-width="2" filter="url(#ultimateGlow)"/>
-  <text x="302" y="27" font-family="Arial Black, sans-serif" font-size="10" font-weight="900" fill="url(#blackRadial)">
-    ELITE
+  <!-- Professional Badge -->
+  <rect x="350" y="20" width="40" height="25" rx="8" fill="url(#goldHighlight)" stroke="url(#premiumGold)" stroke-width="2" filter="url(#goldGlow)"/>
+  <text x="352" y="35" font-family="Arial Black, sans-serif" font-size="12" font-weight="900" fill="url(#richBlack)">
+    PRO
   </text>
   
-  <!-- Professional Accents -->
-  <circle cx="18" cy="18" r="4" fill="url(#goldRadial)" opacity="0.7" filter="url(#ultimateGlow)"/>
-  <circle cx="72" cy="18" r="4" fill="url(#goldRadial)" opacity="0.7" filter="url(#ultimateGlow)"/>
-  <circle cx="18" cy="82" r="4" fill="url(#goldRadial)" opacity="0.7" filter="url(#ultimateGlow)"/>
-  <circle cx="72" cy="82" r="4" fill="url(#goldRadial)" opacity="0.7" filter="url(#ultimateGlow)"/>
-  
-  <!-- Premium border frame -->
-  <rect x="5" y="5" width="340" height="90" rx="15" fill="none" stroke="url(#goldMetallic)" stroke-width="2" opacity="0.5"/>
+  <!-- Clean Corner Elements -->
+  <circle cx="25" cy="25" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
+  <circle cx="95" cy="25" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
+  <circle cx="25" cy="95" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
+  <circle cx="95" cy="95" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
 </svg>
