@@ -18,15 +18,36 @@
     </filter>
   </defs>
   
-  <!-- Company Name -->
+  <!-- Company Name with Tool Letters -->
+  <!-- "Sho" part -->
   <text x="0" y="35" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
         fill="url(#black)" filter="url(#textShadow)">
-    Shop
+    Sho
   </text>
+  
+  <!-- Wrench as "p" -->
+  <g transform="translate(50, 10)">
+    <rect x="0" y="12" width="12" height="3" rx="1.5" fill="url(#black)" stroke="url(#gold)" stroke-width="0.5"/>
+    <rect x="10" y="10" width="6" height="7" rx="2" fill="url(#black)" stroke="url(#gold)" stroke-width="0.5"/>
+    <rect x="11" y="12" width="4" height="3" rx="1" fill="url(#gold)"/>
+    <line x1="1" y1="13.5" x2="9" y2="13.5" stroke="url(#gold)" stroke-width="1"/>
+  </g>
+  
+  <!-- "Han" part -->
   <text x="80" y="35" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
         fill="url(#gold)" filter="url(#textShadow)">
-    Hand
+    Han
   </text>
+  
+  <!-- Hammer as "d" -->
+  <g transform="translate(142, 12)">
+    <!-- Hammer handle -->
+    <rect x="0" y="8" width="3" height="16" rx="1.5" fill="url(#gold)" stroke="#B8860B" stroke-width="0.5"/>
+    <!-- Hammer head -->
+    <rect x="-2" y="8" width="8" height="6" rx="2" fill="url(#gold)" stroke="#B8860B" stroke-width="0.5"/>
+    <!-- Claw -->
+    <path d="M6 8 L10 6 L11 8 L9 10 Z" fill="url(#gold)" stroke="#B8860B" stroke-width="0.5"/>
+  </g>
   <text x="170" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
         fill="url(#gold)">
     ™
