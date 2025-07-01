@@ -158,30 +158,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Orders
+  // Orders - WORKING VERSION
   app.post("/api/orders", async (req, res) => {
     try {
-      const { order, items } = req.body;
-      const orderData = insertOrderSchema.parse(order);
+      const { customerInfo, items, totalAmount, paymentMethod } = req.body;
       
-      // Create order
+      // Basic validation for real orders
+      if (!customerInfo?.name || !customerInfo?.email || !customerInfo?.address || !items?.length) {
+        return res.status(400).json({ 
+          message: "Missing required order information",
+          required: ["customerInfo.name", "customerInfo.email", "customerInfo.address", "items"]
+        });
+      }
+
+      // Create the order with real customer data
+      const orderData = {
+        userId: 1, // Create user system later
+        status: "pending",
+        totalAmount: String(parseFloat(totalAmount) || 0), // Convert to string as required by schema
+        deliveryAddress: `${customerInfo.address}, ${customerInfo.city || ''}, ${customerInfo.zipCode || ''}`.trim(),
+        customerPhone: customerInfo.phone || null,
+        customerEmail: customerInfo.email,
+        estimatedDeliveryTime: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours
+        paymentStatus: "pending",
+        paymentMethod: paymentMethod || "unknown"
+      };
+
       const createdOrder = await storage.createOrder(orderData);
       
-      // Create order items
+      // Add real order items
+      const createdItems = [];
       for (const item of items) {
-        const orderItemData = insertOrderItemSchema.parse({
-          ...item,
-          orderId: createdOrder.id,
-        });
-        await storage.createOrderItem(orderItemData);
+        if (item.partId && item.quantity) {
+          const orderItem = await storage.createOrderItem({
+            orderId: createdOrder.id,
+            partId: parseInt(item.partId),
+            quantity: parseInt(item.quantity),
+            price: String(parseFloat(item.price || "0")) // Use 'price' instead of 'pricePerUnit'
+          });
+          createdItems.push(orderItem);
+        }
       }
       
-      res.status(201).json(createdOrder);
+      // Return complete order data
+      res.status(201).json({
+        success: true,
+        order: {
+          ...createdOrder,
+          items: createdItems
+        },
+        message: `Order ${createdOrder.id} created successfully`,
+        orderNumber: `SH-${new Date().getFullYear()}-${String(createdOrder.id).padStart(4, '0')}`
+      });
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: "Invalid order data", errors: error.errors });
-      }
-      res.status(500).json({ message: "Failed to create order" });
+      console.error("Order creation failed:", error);
+      res.status(500).json({ 
+        message: "Failed to create order",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   });
 

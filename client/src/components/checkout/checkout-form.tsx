@@ -47,12 +47,53 @@ export default function CheckoutForm({ cartItems, total }: CheckoutFormProps) {
            customerInfo.address && customerInfo.city && customerInfo.zipCode;
   };
 
-  const handlePaymentSuccess = (transactionId: string) => {
-    toast({
-      title: "Payment Successful!",
-      description: `Order processed. Transaction ID: ${transactionId}`,
-    });
-    // In real app, redirect to success page or update order status
+  const handlePaymentSuccess = async (transactionId: string) => {
+    try {
+      // Create the actual order in the system
+      const orderData = {
+        customerInfo,
+        items: cartItems.map(item => ({
+          partId: item.id,
+          quantity: item.quantity,
+          price: item.price
+        })),
+        totalAmount: totalWithDelivery,
+        paymentMethod: paymentMethod,
+        transactionId
+      };
+
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        toast({
+          title: "Order Placed Successfully!",
+          description: `Order ${result.orderNumber} is being processed. You'll receive tracking info shortly.`,
+        });
+        
+        // Note: Cart clearing would be handled by parent component
+        // or global state management in a real implementation
+      } else {
+        const error = await response.json();
+        toast({
+          title: "Order Failed",
+          description: error.message || "Unable to process order",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Order Error",
+        description: "Unable to place order. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
