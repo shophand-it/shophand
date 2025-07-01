@@ -19,21 +19,21 @@
   </defs>
   
   <!-- Company Name -->
-  <text x="5" y="40" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
-        fill="url(#black)" filter="url(#textShadow)">
+  <text x="10" y="40" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
+        fill="url(#black)" filter="url(#textShadow)" letter-spacing="1px">
     Shop
   </text>
-  <text x="85" y="40" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
-        fill="url(#gold)" filter="url(#textShadow)">
+  <text x="95" y="40" font-family="Impact, Arial Black, sans-serif" font-size="40" font-weight="900" 
+        fill="url(#gold)" filter="url(#textShadow)" letter-spacing="1px">
     Hand
   </text>
-  <text x="175" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+  <text x="185" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
         fill="url(#gold)">
     ™
   </text>
   
   <!-- Clean tagline -->
-  <text x="5" y="57" font-family="Arial, sans-serif" font-size="12" font-weight="600" 
+  <text x="10" y="57" font-family="Arial, sans-serif" font-size="12" font-weight="600" 
         fill="url(#gold)" opacity="0.9">
     Need a part? Shop Hand it!
   </text>
