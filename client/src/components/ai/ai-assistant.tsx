@@ -150,7 +150,7 @@ export function AIAssistant({ mode = 'customer' }: AIAssistantProps) {
               )}
             </div>
             <div>
-              <h3 className="ai-heading text-lg">ShopHand AI™</h3>
+              <h3 className="ai-heading text-lg">ShopHand Assistant</h3>
               <p className="cyber-text text-xs">{getAICapabilityDescription()}</p>
             </div>
           </div>

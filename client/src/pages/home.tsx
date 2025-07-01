@@ -8,6 +8,7 @@ import { AIAssistant } from "@/components/ai/ai-assistant";
 import { NeuralNetworkBG } from "@/components/ai/neural-network-bg";
 import { PartsDeliveryTracker } from "@/components/delivery/parts-delivery-tracker";
 import { PartsSearchDelivery } from "@/components/delivery/parts-search-delivery";
+import { ComplianceNotice } from "@/components/legal/compliance-notice";
 
 export default function Home() {
   // Detect if running in mobile app environment
@@ -76,6 +77,11 @@ export default function Home() {
             <OrderTracking />
           </div>
         </div>
+      </div>
+      
+      {/* Legal Compliance Footer */}
+      <div className="px-4 mt-8">
+        <ComplianceNotice />
       </div>
     </div>
   );

@@ -97,7 +97,7 @@ export default function BusinessDashboard() {
         <div className="mb-8 relative">
           <div className="absolute -top-4 left-0 w-full h-1 bg-luxury-gradient ai-luxury-shimmer" />
           <h1 className="ai-heading text-4xl mb-2">Parts Delivery Analytics</h1>
-          <p className="cyber-text">Real-time supply chain & delivery performance</p>
+          <p className="cyber-text">Need a part? Shop Hand it! - Supply chain performance</p>
         </div>
 
         {/* Key Metrics Overview */}

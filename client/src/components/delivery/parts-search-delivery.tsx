@@ -260,7 +260,7 @@ export function PartsSearchDelivery() {
       <div className="grid grid-cols-4 gap-4">
         <div className="glass-morphism p-3 rounded-lg text-center">
           <div className="text-lg font-bold text-neural-primary">45min</div>
-          <div className="text-xs text-muted-foreground">Avg Delivery</div>
+          <div className="text-xs text-muted-foreground">Avg Delivery*</div>
         </div>
         <div className="glass-morphism p-3 rounded-lg text-center">
           <div className="text-lg font-bold text-cyber-cyan">47,000+</div>
@@ -274,6 +274,15 @@ export function PartsSearchDelivery() {
           <div className="text-lg font-bold text-neon-green">24/7</div>
           <div className="text-xs text-muted-foreground">Available</div>
         </div>
+      </div>
+      
+      {/* Legal Disclaimer */}
+      <div className="mt-6 p-3 bg-muted/30 rounded-lg border border-border/50">
+        <p className="text-xs text-muted-foreground">
+          <strong>*Disclaimer:</strong> Delivery times are estimates and may vary based on location, traffic, and part availability. 
+          ShopHand™ facilitates connections between verified suppliers and customers. Professional installation recommended for safety. 
+          All parts subject to supplier warranty terms. Prices include applicable taxes and fees.
+        </p>
       </div>
     </div>
   );
