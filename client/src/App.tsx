@@ -18,7 +18,7 @@ function Router() {
   const [interfaceMode, setInterfaceMode] = useState<InterfaceMode>("customer");
 
   return (
-    <div className="min-h-screen bg-automotive-black-900 text-white">
+    <div className="min-h-screen bg-automotive-black-900 text-white relative overflow-x-hidden">
       <NavigationHeader 
         interfaceMode={interfaceMode}
         onInterfaceModeChange={setInterfaceMode}

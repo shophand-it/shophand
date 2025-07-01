@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Wrench, ShoppingCart, User, RotateCcw, Building } from "lucide-react";
+import { Wrench, ShoppingCart, User, RotateCcw, Building, Brain, Sparkles } from "lucide-react";
 import { useState } from "react";
 import type { InterfaceMode } from "@/App";
 
@@ -25,16 +25,22 @@ export default function NavigationHeader({
   };
 
   return (
-    <header className="bg-automotive-black-800 border-b border-gold-600/20 sticky top-0 z-50">
+    <header className="bg-automotive-black-800 border-b border-neural-primary/30 sticky top-0 z-50 ai-hologram">
+      {/* Neural scan line */}
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-neural-gradient ai-cyber-scan" />
+      
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gold-gradient rounded-lg flex items-center justify-center">
-              <Wrench className="text-automotive-black-900 text-lg" />
+            <div className="relative w-10 h-10 bg-neural-gradient rounded-lg flex items-center justify-center ai-quantum-glow">
+              <Brain className="text-white text-lg ai-status-active" />
+              <div className="absolute -top-1 -right-1">
+                <Sparkles className="w-3 h-3 text-luxury-gold animate-pulse" />
+              </div>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">ShopHand™</h1>
-              <p className="text-xs text-gray-400">Premium Auto Parts</p>
+              <h1 className="luxury-text text-xl font-bold">ShopHand AI™</h1>
+              <p className="cyber-text text-xs">Neural-Powered Parts Platform</p>
             </div>
           </div>
           

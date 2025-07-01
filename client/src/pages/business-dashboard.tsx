@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AIAssistant } from "@/components/ai/ai-assistant";
+import { NeuralNetworkBG } from "@/components/ai/neural-network-bg";
 import { 
   TrendingUp, 
   DollarSign, 
@@ -81,11 +83,21 @@ export default function BusinessDashboard() {
   ];
 
   return (
-    <div className="py-8 px-4 bg-automotive-black-900 min-h-screen">
+    <div className="relative py-8 px-4 bg-automotive-black-900 min-h-screen neural-bg">
+      {/* Luxury Neural Network Background */}
+      <NeuralNetworkBG intensity="low" color="luxury" />
+      
+      {/* Business AI Assistant */}
+      <div className="fixed top-20 right-4 z-50 w-80 max-w-[calc(100vw-2rem)] md:w-96">
+        <AIAssistant mode="business" />
+      </div>
+      
       <div className="container mx-auto max-w-7xl">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Business Intelligence Dashboard</h1>
-          <p className="text-gray-400">Scaling ShopHand™ to billion-dollar valuation</p>
+        {/* Luxury Header with AI Enhancement */}
+        <div className="mb-8 relative">
+          <div className="absolute -top-4 left-0 w-full h-1 bg-luxury-gradient ai-luxury-shimmer" />
+          <h1 className="ai-heading text-4xl mb-2">Business Intelligence Dashboard</h1>
+          <p className="cyber-text">Scaling ShopHand™ to billion-dollar valuation</p>
         </div>
 
         {/* Key Metrics Overview */}
