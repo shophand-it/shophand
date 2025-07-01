@@ -12,6 +12,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Setup authentication
   setupAuth(app);
+
+  // Health check endpoint for deployment monitoring
+  app.get("/api/health", (req, res) => {
+    res.json({ 
+      status: "healthy", 
+      timestamp: new Date().toISOString(),
+      service: "ShopHand™ Platform"
+    });
+  });
   
   // Categories
   app.get("/api/categories", async (req, res) => {
