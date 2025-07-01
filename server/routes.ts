@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema, insertDriverSchema, insertOrderSchema, insertOrderItemSchema } from "@shared/schema";
 import { z } from "zod";
+import { automationEngine } from "./automation";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   

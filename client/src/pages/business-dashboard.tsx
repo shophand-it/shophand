@@ -15,6 +15,8 @@ import {
   Handshake
 } from "lucide-react";
 import SubscriptionPlans from "@/components/business/subscription-plans";
+import RevenueTracker from "@/components/automation/revenue-tracker";
+import PerformanceMonitor from "@/components/automation/performance-monitor";
 
 export default function BusinessDashboard() {
   // Mock business analytics data
@@ -295,6 +297,26 @@ export default function BusinessDashboard() {
                 <span className="text-sm opacity-80">White-label in 50+ markets</span>
               </Button>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Revenue Automation Dashboard */}
+        <Card className="bg-black/40 border-gray-700">
+          <CardHeader>
+            <CardTitle className="text-white">Revenue Automation Dashboard</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <RevenueTracker />
+          </CardContent>
+        </Card>
+
+        {/* Performance & Infrastructure */}
+        <Card className="bg-black/40 border-gray-700">
+          <CardHeader>
+            <CardTitle className="text-white">Performance & Infrastructure</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <PerformanceMonitor />
           </CardContent>
         </Card>
 
