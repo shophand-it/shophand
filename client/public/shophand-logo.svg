@@ -1,172 +1,70 @@
-<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- High Definition Gold Gradients -->
-    <linearGradient id="premiumGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
-      <stop offset="20%" style="stop-color:#FFD700;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#DAA520;stop-opacity:1" />
-      <stop offset="80%" style="stop-color:#B8860B;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8B7000;stop-opacity:1" />
-    </linearGradient>
-    
-    <radialGradient id="goldHighlight" cx="40%" cy="20%" r="60%">
-      <stop offset="0%" style="stop-color:#FFFACD;stop-opacity:1" />
-      <stop offset="40%" style="stop-color:#FFD700;stop-opacity:1" />
+    <!-- Simple Gold Gradient -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
-    </radialGradient>
+    </linearGradient>
     
-    <!-- Professional Black Gradients -->
-    <linearGradient id="richBlack" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    <!-- Clean Black -->
+    <linearGradient id="black" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
     </linearGradient>
     
-    <radialGradient id="deepBlack" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
-      <stop offset="70%" style="stop-color:#1a1a1a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
-    </radialGradient>
-    
-    <!-- HD Filters and Effects -->
-    <filter id="goldGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feColorMatrix type="matrix" values="1 0.8 0 0 0  0 1 0.2 0 0  0 0 0.8 0 0  0 0 0 1.5 0"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <filter id="premiumShadow">
-      <feDropShadow dx="4" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.6"/>
-    </filter>
-    
-    <filter id="innerShadow">
-      <feOffset dx="0" dy="2"/>
-      <feGaussianBlur stdDeviation="2" result="offset-blur"/>
-      <feFlood flood-color="#000000" flood-opacity="0.3"/>
-      <feComposite in2="offset-blur" operator="in"/>
-      <feMerge> 
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/> 
-      </feMerge>
+    <!-- Simple Shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
     </filter>
   </defs>
   
-  <!-- Main Logo Circle -->
-  <circle cx="60" cy="60" r="50" fill="url(#deepBlack)" stroke="url(#premiumGold)" stroke-width="4" filter="url(#premiumShadow)"/>
-  <circle cx="60" cy="60" r="45" fill="none" stroke="url(#goldHighlight)" stroke-width="1" opacity="0.6"/>
-  
-  <!-- Professional Hand -->
-  <g transform="translate(35, 35)">
-    <!-- Main Hand Shape -->
-    <path d="M10 15 C12 10 20 8 28 12 L35 18 C40 22 40 32 35 38 L28 48 C24 52 16 52 10 48 L5 38 C0 32 0 22 5 18 Z" 
-          fill="url(#goldHighlight)" stroke="url(#premiumGold)" stroke-width="2" filter="url(#goldGlow)"/>
+  <!-- Simple Hand Icon -->
+  <g transform="translate(10, 15)">
+    <circle cx="25" cy="25" r="20" fill="url(#black)" stroke="url(#gold)" stroke-width="3" filter="url(#shadow)"/>
     
-    <!-- Hand Details -->
-    <ellipse cx="20" cy="28" rx="4" ry="2.5" fill="url(#premiumGold)" opacity="0.8"/>
-    <ellipse cx="25" cy="30" rx="3" ry="2" fill="url(#premiumGold)" opacity="0.8"/>
-    <ellipse cx="30" cy="32" rx="2.5" ry="1.5" fill="url(#premiumGold)" opacity="0.8"/>
+    <!-- Simple Hand -->
+    <path d="M15 20 L25 15 L35 20 L35 30 L25 35 L15 30 Z" fill="url(#gold)" stroke="#DAA520" stroke-width="1"/>
     
-    <!-- Thumb -->
-    <path d="M12 28 C16 25 22 28 26 31 C29 34 26 40 22 43 C18 46 12 43 9 39 Z" 
-          fill="url(#premiumGold)" stroke="#DAA520" stroke-width="1" opacity="0.9"/>
+    <!-- Part in hand -->
+    <circle cx="25" cy="12" r="4" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
+    <circle cx="25" cy="12" r="2" fill="url(#black)"/>
     
-    <!-- Auto Part - High Detail Gear -->
-    <g transform="translate(40, 12)">
-      <circle cx="0" cy="0" r="10" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="2"/>
-      <circle cx="0" cy="0" r="7" fill="url(#goldHighlight)"/>
-      <circle cx="0" cy="0" r="4" fill="url(#deepBlack)"/>
-      
-      <!-- 8 Main Gear Teeth -->
-      <rect x="-1.5" y="-13" width="3" height="5" rx="1" fill="url(#premiumGold)"/>
-      <rect x="-1.5" y="8" width="3" height="5" rx="1" fill="url(#premiumGold)"/>
-      <rect x="-13" y="-1.5" width="5" height="3" rx="1" fill="url(#premiumGold)"/>
-      <rect x="8" y="-1.5" width="5" height="3" rx="1" fill="url(#premiumGold)"/>
-      
-      <rect x="-9" y="-9" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(45)"/>
-      <rect x="5" y="-9" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(-45)"/>
-      <rect x="-9" y="7" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(-45)"/>
-      <rect x="5" y="7" width="4" height="2" rx="1" fill="url(#premiumGold)" transform="rotate(45)"/>
-      
-      <!-- Center Detail -->
-      <circle cx="0" cy="0" r="2" fill="url(#premiumGold)" filter="url(#innerShadow)"/>
-      <circle cx="0" cy="0" r="1" fill="url(#deepBlack)"/>
-    </g>
-    
-    <!-- Professional Wrench -->
-    <rect x="25" y="38" width="22" height="6" rx="3" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="1.5"/>
-    <rect x="45" y="35" width="12" height="12" rx="5" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="1.5"/>
-    <rect x="47" y="38" width="8" height="6" rx="2" fill="url(#goldHighlight)"/>
-    <line x1="27" y1="41" x2="43" y2="41" stroke="url(#premiumGold)" stroke-width="1.5"/>
+    <!-- Simple gear teeth -->
+    <rect x="24" y="8" width="2" height="2" fill="url(#gold)"/>
+    <rect x="24" y="14" width="2" height="2" fill="url(#gold)"/>
+    <rect x="21" y="11" width="2" height="2" fill="url(#gold)"/>
+    <rect x="27" y="11" width="2" height="2" fill="url(#gold)"/>
   </g>
   
-  <!-- Premium Delivery Truck -->
-  <g transform="translate(20, 80)">
-    <rect x="0" y="12" width="35" height="18" rx="5" fill="url(#deepBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
-    <rect x="35" y="15" width="15" height="15" rx="4" fill="url(#deepBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
-    
-    <!-- Premium Wheels -->
-    <circle cx="10" cy="35" r="6" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
-    <circle cx="40" cy="35" r="6" fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="3"/>
-    <circle cx="10" cy="35" r="4" fill="url(#goldHighlight)"/>
-    <circle cx="40" cy="35" r="4" fill="url(#goldHighlight)"/>
-    <circle cx="10" cy="35" r="2" fill="url(#deepBlack)"/>
-    <circle cx="40" cy="35" r="2" fill="url(#deepBlack)"/>
-    
-    <!-- Truck Details -->
-    <rect x="3" y="15" width="10" height="5" rx="2" fill="url(#goldHighlight)" opacity="0.9"/>
-    <rect x="37" y="18" width="8" height="5" rx="1" fill="url(#goldHighlight)" opacity="0.9"/>
-    <line x1="5" y1="24" x2="30" y2="24" stroke="url(#premiumGold)" stroke-width="2"/>
-    <rect x="12" y="26" width="18" height="3" rx="1" fill="url(#premiumGold)" opacity="0.8"/>
-  </g>
-  
-  <!-- Dynamic Speed Lines -->
-  <g opacity="0.9">
-    <line x1="120" y1="50" x2="138" y2="50" stroke="url(#premiumGold)" stroke-width="6" stroke-linecap="round" filter="url(#goldGlow)"/>
-    <line x1="120" y1="60" x2="132" y2="60" stroke="url(#premiumGold)" stroke-width="4" stroke-linecap="round" filter="url(#goldGlow)"/>
-    <line x1="120" y1="70" x2="126" y2="70" stroke="url(#premiumGold)" stroke-width="3" stroke-linecap="round" filter="url(#goldGlow)"/>
-  </g>
-  
-  <!-- Premium Company Branding -->
-  <g>
-    <!-- High Definition Company Name -->
-    <text x="150" y="55" font-family="Montserrat, Arial Black, sans-serif" font-size="48" font-weight="900" 
-          fill="url(#richBlack)" stroke="url(#premiumGold)" stroke-width="1" filter="url(#goldGlow)">
-      Shop
-    </text>
-    <text x="240" y="55" font-family="Montserrat, Arial Black, sans-serif" font-size="48" font-weight="900" 
-          fill="url(#goldHighlight)" stroke="url(#premiumGold)" stroke-width="1" filter="url(#goldGlow)">
-      Hand
-    </text>
-    <text x="330" y="55" font-family="Times New Roman, serif" font-size="28" font-weight="bold" 
-          fill="url(#premiumGold)" filter="url(#goldGlow)">
-      ™
-    </text>
-    
-    <!-- Professional Tagline -->
-    <text x="150" y="75" font-family="Open Sans, Arial, sans-serif" font-size="18" font-weight="700" 
-          fill="url(#richBlack)" opacity="0.95">
-      PROFESSIONAL PARTS DELIVERY
-    </text>
-    
-    <!-- Clean Slogan -->
-    <text x="150" y="95" font-family="Open Sans, Arial, sans-serif" font-size="14" font-weight="500" 
-          fill="url(#deepBlack)" opacity="0.8">
-      Need a part? Shop Hand it!
-    </text>
-  </g>
-  
-  <!-- Professional Badge -->
-  <rect x="350" y="20" width="40" height="25" rx="8" fill="url(#goldHighlight)" stroke="url(#premiumGold)" stroke-width="2" filter="url(#goldGlow)"/>
-  <text x="352" y="35" font-family="Arial Black, sans-serif" font-size="12" font-weight="900" fill="url(#richBlack)">
-    PRO
+  <!-- Company Name -->
+  <text x="70" y="35" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="url(#black)">
+    Shop
+  </text>
+  <text x="140" y="35" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="url(#gold)">
+    Hand
+  </text>
+  <text x="210" y="35" font-family="Arial, sans-serif" font-size="20" fill="url(#gold)">
+    ™
   </text>
   
-  <!-- Clean Corner Elements -->
-  <circle cx="25" cy="25" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
-  <circle cx="95" cy="25" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
-  <circle cx="25" cy="95" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
-  <circle cx="95" cy="95" r="5" fill="url(#goldHighlight)" opacity="0.6" filter="url(#goldGlow)"/>
+  <!-- Simple tagline -->
+  <text x="70" y="55" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="url(#black)">
+    PARTS DELIVERED FAST
+  </text>
+  
+  <!-- Simple truck icon -->
+  <g transform="translate(230, 15)">
+    <rect x="0" y="15" width="20" height="12" rx="2" fill="url(#black)" stroke="url(#gold)" stroke-width="2"/>
+    <rect x="20" y="18" width="8" height="9" rx="1" fill="url(#black)" stroke="url(#gold)" stroke-width="2"/>
+    
+    <!-- Wheels -->
+    <circle cx="5" cy="30" r="3" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
+    <circle cx="23" cy="30" r="3" fill="url(#gold)" stroke="#B8860B" stroke-width="1"/>
+    <circle cx="5" cy="30" r="1.5" fill="url(#black)"/>
+    <circle cx="23" cy="30" r="1.5" fill="url(#black)"/>
+    
+    <!-- Speed lines -->
+    <line x1="35" y1="20" x2="42" y2="20" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="35" y1="25" x2="40" y2="25" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+  </g>
 </svg>
