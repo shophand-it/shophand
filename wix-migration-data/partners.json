@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "1",
+    "name": "AutoZone",
+    "email": "supplier@autozone.com",
+    "phone": "",
+    "address": "{}",
+    "partnerType": "store",
+    "isActive": true,
+    "rating": 4.5
+  }
+]

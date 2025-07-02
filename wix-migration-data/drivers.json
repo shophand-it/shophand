@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "1",
+    "userId": "2",
+    "vehicleInfo": "{\"make\":\"Honda\",\"model\":\"Civic\",\"year\":2020}",
+    "isOnline": true,
+    "rating": 4.8,
+    "earnings": 2500,
+    "currentLocation": "{}",
+    "status": "ACTIVE"
+  }
+]

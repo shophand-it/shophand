@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "1",
+    "title": "Brake Pads",
+    "description": "High-quality brake pads for Toyota Camry",
+    "price": 89.99,
+    "categoryId": "1",
+    "partnerId": "1",
+    "vehicleCompatibility": "{}",
+    "condition": "new",
+    "inStock": true,
+    "slug": "brake-pads",
+    "mainMedia": "https://static.wixstatic.com/media/placeholder.jpg",
+    "ribbon": "New",
+    "inventory": {
+      "trackInventory": true,
+      "inStock": true,
+      "quantity": 50
+    }
+  }
+]

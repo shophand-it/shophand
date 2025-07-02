@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "1",
+    "orderNumber": "SH-2024-001",
+    "buyerInfo": {
+      "userId": "1",
+      "email": ""
+    },
+    "billingInfo": {
+      "address": "123 Main St, City, State"
+    },
+    "shippingInfo": {
+      "address": "123 Main St, City, State"
+    },
+    "paymentStatus": "PAID",
+    "fulfillmentStatus": "COMPLETED",
+    "totals": {
+      "total": 89.99,
+      "subtotal": 89.99,
+      "tax": 0,
+      "shipping": 0
+    },
+    "lineItems": [],
+    "createdDate": "2025-07-02T03:34:45.693Z",
+    "updatedDate": "2025-07-02T03:34:45.693Z"
+  }
+]

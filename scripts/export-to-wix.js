@@ -1,6 +1,9 @@
 // ShopHand™ Data Export Script for Wix Migration
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Export directory
 const EXPORT_DIR = './wix-migration-data';
@@ -397,8 +400,8 @@ function exportAllData() {
 }
 
 // Run the export
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
     exportAllData();
 }
 
-module.exports = { exportAllData };
+export { exportAllData };

@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "1",
+    "email": "customer@example.com",
+    "username": "customer1",
+    "firstName": "John",
+    "lastName": "Doe",
+    "userType": "customer",
+    "createdAt": "2025-07-02T03:34:45.693Z",
+    "title": "John Doe",
+    "slug": "customer1"
+  }
+]

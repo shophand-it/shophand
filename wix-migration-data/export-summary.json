@@ -1,0 +1,23 @@
+{
+  "exportDate": "2025-07-02T03:34:45.708Z",
+  "platform": "ShopHand™",
+  "targetPlatform": "Wix Velo",
+  "totalRecords": 6,
+  "breakdown": {
+    "users": 1,
+    "parts": 1,
+    "orders": 1,
+    "drivers": 1,
+    "categories": 1,
+    "partners": 1
+  },
+  "files": [
+    "users.json",
+    "parts.json",
+    "orders.json",
+    "drivers.json",
+    "categories.json",
+    "partners.json",
+    "wix-import-script.js"
+  ]
+}
