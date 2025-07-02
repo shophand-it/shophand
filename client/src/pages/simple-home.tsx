@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, ShoppingCart, Truck, Package, Star } from "lucide-react";
+import AnimatedBackground from "@/components/animated-background";
 
 interface Part {
   id: number;
