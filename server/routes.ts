@@ -46,6 +46,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // User Authentication and Management
+  app.post("/api/auth/register", async (req, res) => {
+    try {
+      const userData = insertUserSchema.parse(req.body);
+      const existingUser = await storage.getUserByEmail(userData.email);
+      
+      if (existingUser) {
+        return res.status(409).json({ error: "Email already registered" });
+      }
+      
+      const user = await storage.createUser(userData);
+      res.status(201).json({ 
+        user: { id: user.id, email: user.email, username: user.username },
+        message: "User registered successfully" 
+      });
+    } catch (error) {
+      res.status(400).json({ error: error instanceof Error ? error.message : "Registration failed" });
+    }
+  });
+
+  app.post("/api/auth/login", async (req, res) => {
+    const { email, password } = req.body;
+    
+    try {
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+      
+      // In a real app, you'd verify the password hash here
+      // For now, we'll simulate successful login
+      res.json({ 
+        user: { id: user.id, email: user.email, username: user.username },
+        token: "jwt-token-here" // In real app, generate actual JWT
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Login failed" });
+    }
+  });
+
+  app.get("/api/auth/user", (req, res) => {
+    // Check session or token for authenticated user
+    // For now, return mock user if token exists
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      res.json({
+        id: 1,
+        email: "user@example.com",
+        username: "user",
+        firstName: "John",
+        lastName: "Doe",
+        userType: "customer"
+      });
+    } else {
+      res.status(401).json({ error: "Not authenticated" });
+    }
+  });
+
   // Categories
   app.get("/api/categories", async (req, res) => {
     try {
@@ -208,9 +266,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
+      // Create or find guest user for this email
+      let user = await storage.getUserByEmail(customerInfo.email);
+      if (!user) {
+        user = await storage.createUser({
+          username: customerInfo.email.split('@')[0],
+          email: customerInfo.email,
+          password: "guest-account", // In real app, generate secure password
+          firstName: customerInfo.name.split(' ')[0] || "",
+          lastName: customerInfo.name.split(' ').slice(1).join(' ') || "",
+          userType: "customer"
+        });
+      }
+
       // Create the order with real customer data
       const orderData = {
-        userId: 1, // Create user system later
+        userId: user.id,
         status: "pending",
         totalAmount: String(parseFloat(totalAmount) || 0), // Convert to string as required by schema
         deliveryAddress: `${customerInfo.address}, ${customerInfo.city || ''}, ${customerInfo.zipCode || ''}`.trim(),
@@ -543,6 +614,130 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // PayPal Payment Routes
+  // Shopping Cart API
+  app.post("/api/cart/add", async (req, res) => {
+    try {
+      const { partId, quantity = 1 } = req.body;
+      
+      if (!partId) {
+        return res.status(400).json({ error: "Part ID is required" });
+      }
+      
+      const part = await storage.getPart(partId);
+      if (!part) {
+        return res.status(404).json({ error: "Part not found" });
+      }
+      
+      res.json({
+        success: true,
+        message: `${part.name} added to cart`,
+        cartItem: {
+          partId: part.id,
+          name: part.name,
+          price: part.price,
+          quantity: quantity
+        }
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to add to cart" });
+    }
+  });
+
+  // Delivery Tracking
+  app.get("/api/deliveries/:orderId/tracking", async (req, res) => {
+    try {
+      const orderId = parseInt(req.params.orderId);
+      const order = await storage.getOrder(orderId);
+      
+      if (!order) {
+        return res.status(404).json({ error: "Order not found" });
+      }
+      
+      const trackingData = {
+        orderId: orderId,
+        orderNumber: `SH-${new Date().getFullYear()}-${String(orderId).padStart(4, '0')}`,
+        status: order.status,
+        currentLocation: "En route to destination",
+        estimatedArrival: order.estimatedDeliveryTime,
+        driver: {
+          name: "John Smith",
+          phone: "(555) 123-4567",
+          vehicleInfo: "Blue Honda Civic - ABC123"
+        },
+        updates: [
+          { 
+            timestamp: new Date(Date.now() - 60000).toISOString(), 
+            status: "Order picked up", 
+            location: "AutoZone - Commerce Way" 
+          },
+          { 
+            timestamp: new Date().toISOString(), 
+            status: "En route", 
+            location: "Highway 101" 
+          }
+        ]
+      };
+      
+      res.json(trackingData);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get tracking info" });
+    }
+  });
+
+  // Driver Earnings and Statistics
+  app.get("/api/drivers/:driverId/earnings", async (req, res) => {
+    try {
+      const driverId = parseInt(req.params.driverId);
+      const driver = await storage.getDriver(driverId);
+      
+      if (!driver) {
+        return res.status(404).json({ error: "Driver not found" });
+      }
+      
+      const earningsData = {
+        todayEarnings: 245.75,
+        weekEarnings: 1834.50,
+        monthEarnings: 7892.25,
+        totalEarnings: driver.earnings || 0,
+        deliveriesCompleted: 127,
+        rating: driver.rating || 4.8,
+        recentDeliveries: [
+          { date: "2025-01-02", amount: 45.25, deliveryTime: "25 min" },
+          { date: "2025-01-02", amount: 67.50, deliveryTime: "35 min" },
+          { date: "2025-01-01", amount: 132.00, deliveryTime: "45 min" }
+        ]
+      };
+      
+      res.json(earningsData);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get earnings data" });
+    }
+  });
+
+  // Vehicle Search API
+  app.get("/api/parts/search", async (req, res) => {
+    try {
+      const { make, model, year, category } = req.query;
+      
+      if (make && model && year) {
+        const parts = await storage.searchPartsByVehicle(
+          String(make), 
+          String(model), 
+          parseInt(String(year))
+        );
+        res.json(parts);
+      } else if (category) {
+        const parts = await storage.getParts({ categoryId: parseInt(String(category)) });
+        res.json(parts);
+      } else {
+        const parts = await storage.getParts();
+        res.json(parts);
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Failed to search parts" });
+    }
+  });
+
   app.get("/api/paypal/setup", async (req, res) => {
     await loadPaypalDefault(req, res);
   });
