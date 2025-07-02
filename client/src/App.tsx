@@ -18,6 +18,7 @@ import NavigationHeader from "@/components/shared/navigation-header";
 import BottomNavigation from "@/components/shared/bottom-navigation";
 import Footer from "@/components/shared/footer";
 import { PartsDeliveryMotionBG } from "@/components/background/parts-delivery-motion";
+import { ErrorBoundary } from "@/components/debug/error-boundary";
 
 export type InterfaceMode = "customer" | "driver" | "business";
 
@@ -77,14 +78,16 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
