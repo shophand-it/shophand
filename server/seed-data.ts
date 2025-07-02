@@ -98,100 +98,100 @@ export async function seedDatabase() {
     // Seed Parts
     const partData = [
       {
-        id: 1,
         name: "BMW Brake Disc Set",
         description: "Premium brake disc set for BMW 3 Series. Includes front and rear discs with installation hardware.",
         price: "189.99",
         categoryId: 2,
         partnerId: 2,
         condition: "new",
-        inStock: true,
+        source: "oem",
+        stock: 15,
         vehicleCompatibility: JSON.stringify({ makes: ["BMW"], models: ["320i", "330i"], years: [2018, 2019, 2020, 2021] }),
-        partNumber: "BMW-BD-320-2020"
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 2,
         name: "Toyota Engine Air Filter",
         description: "High-performance engine air filter for Toyota Camry. Improves airflow and engine efficiency.",
         price: "24.99",
         categoryId: 1,
         partnerId: 1,
         condition: "new",
-        inStock: true,
+        source: "aftermarket",
+        stock: 25,
         vehicleCompatibility: JSON.stringify({ makes: ["Toyota"], models: ["Camry"], years: [2018, 2019, 2020] }),
-        partNumber: "TOY-AF-CAM-2019"
+        imageUrl: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 3,
         name: "Ford F-150 Exhaust System",
         description: "Complete exhaust system replacement for Ford F-150. Stainless steel construction.",
         price: "445.00",
         categoryId: 5,
         partnerId: 3,
         condition: "refurbished",
-        inStock: true,
+        source: "aftermarket",
+        stock: 8,
         vehicleCompatibility: JSON.stringify({ makes: ["Ford"], models: ["F-150"], years: [2020, 2021, 2022] }),
-        partNumber: "FORD-EX-F150-2021"
+        imageUrl: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 4,
-        name: "Marine Propeller - Stainless Steel",
+        name: "Marine Propeller - Stainless Steel", 
         description: "High-performance stainless steel propeller for Yamaha WaveRunner. 3-blade design.",
         price: "299.99",
         categoryId: 6,
         partnerId: 4,
         condition: "new",
-        inStock: true,
+        source: "oem",
+        stock: 12,
         vehicleCompatibility: JSON.stringify({ makes: ["Yamaha"], models: ["WaveRunner"], years: [2020, 2021, 2022, 2023] }),
-        partNumber: "YAM-PROP-WR-2022"
+        imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 5,
         name: "Aircraft Avionics Display Unit",
         description: "Modern avionics display unit for Cessna 172. GPS navigation and flight instruments.",
         price: "1299.99",
         categoryId: 7,
         partnerId: 5,
         condition: "new",
-        inStock: true,
+        source: "oem",
+        stock: 3,
         vehicleCompatibility: JSON.stringify({ makes: ["Cessna"], models: ["172"], years: [2010, 2011, 2012, 2013, 2014, 2015] }),
-        partNumber: "CESSNA-AVX-172-2015"
+        imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 6,
         name: "Honda Suspension Shock",
         description: "Front suspension shock absorber for Honda Civic. Improves ride quality and handling.",
         price: "89.99",
         categoryId: 4,
         partnerId: 1,
         condition: "new",
-        inStock: true,
+        source: "aftermarket",
+        stock: 20,
         vehicleCompatibility: JSON.stringify({ makes: ["Honda"], models: ["Civic"], years: [2016, 2017, 2018, 2019] }),
-        partNumber: "HON-SHOCK-CIV-2018"
+        imageUrl: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 7,
         name: "Polaris RZR Drive Belt",
         description: "Heavy-duty drive belt for Polaris RZR recreational vehicles. Designed for extreme conditions.",
         price: "159.99",
         categoryId: 8,
         partnerId: 3,
         condition: "new",
-        inStock: true,
+        source: "oem",
+        stock: 6,
         vehicleCompatibility: JSON.stringify({ makes: ["Polaris"], models: ["RZR"], years: [2022, 2023] }),
-        partNumber: "POL-BELT-RZR-2023"
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
       },
       {
-        id: 8,
         name: "BMW Electrical Harness",
         description: "Complete electrical wiring harness for BMW 3 Series. Includes all connectors and documentation.",
         price: "234.50",
         categoryId: 3,
         partnerId: 2,
         condition: "new",
-        inStock: true,
+        source: "oem",
+        stock: 10,
         vehicleCompatibility: JSON.stringify({ makes: ["BMW"], models: ["320i", "330i"], years: [2019, 2020, 2021] }),
-        partNumber: "BMW-EH-320-2020"
+        imageUrl: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=400&h=400&fit=crop&crop=center"
       }
     ];
 
