@@ -7,6 +7,8 @@ import { automationEngine } from "./automation";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processBankPayment, getBankingStatus, getRevenueTransfers } from "./banking";
 import { setupAuth, requireAuth, requireUserType } from "./auth";
+import { addSampleData } from "./debug-seed";
+import { addPartsToCatalog } from "./add-parts";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -20,6 +22,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       timestamp: new Date().toISOString(),
       service: "ShopHand™ Platform"
     });
+  });
+
+  // Quick seed endpoint for debugging
+  app.post("/api/debug/seed", async (req, res) => {
+    try {
+      await addSampleData();
+      res.json({ success: true, message: "Sample data added successfully" });
+    } catch (error) {
+      console.error("Seeding failed:", error);
+      res.status(500).json({ success: false, error: error instanceof Error ? error.message : "Unknown error" });
+    }
+  });
+
+  // Add parts to catalog
+  app.post("/api/debug/add-parts", async (req, res) => {
+    try {
+      const result = await addPartsToCatalog();
+      res.json(result);
+    } catch (error) {
+      console.error("Adding parts failed:", error);
+      res.status(500).json({ success: false, error: error instanceof Error ? error.message : "Unknown error" });
+    }
   });
   
   // Categories
