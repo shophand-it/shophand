@@ -1,0 +1,428 @@
+{
+  "app": {
+    "name": "ShopHand™",
+    "description": "Premium auto parts delivery platform",
+    "version": "1.0.0",
+    "company": "Star Soul Enterprise LLC",
+    "slogan": "Need a part? Shop Hand it!",
+    "theme": {
+      "primaryColor": "#000000",
+      "accentColor": "#FFD700",
+      "textColor": "#FFFFFF",
+      "backgroundColor": "#1a1a1a"
+    },
+    "navigation": {
+      "type": "tabs",
+      "position": "bottom",
+      "tabs": [
+        {
+          "id": "browse",
+          "title": "Browse",
+          "icon": "search",
+          "screen": "PartsListScreen"
+        },
+        {
+          "id": "orders",
+          "title": "Orders",
+          "icon": "package",
+          "screen": "OrdersScreen"
+        },
+        {
+          "id": "driver",
+          "title": "Drive",
+          "icon": "car",
+          "screen": "DriverDashboard",
+          "visibleFor": ["driver", "business"]
+        },
+        {
+          "id": "profile",
+          "title": "Profile",
+          "icon": "user",
+          "screen": "ProfileScreen"
+        }
+      ]
+    },
+    "screens": {
+      "PartsListScreen": {
+        "type": "collection",
+        "collection": "Parts",
+        "layout": "grid",
+        "itemsPerRow": 2,
+        "searchEnabled": true,
+        "filterEnabled": true,
+        "sortEnabled": true,
+        "components": [
+          {
+            "type": "searchBar",
+            "placeholder": "Search by vehicle or part name",
+            "position": "top"
+          },
+          {
+            "type": "filterTabs",
+            "options": ["All", "Automotive", "Marine", "Aviation", "Recreational"],
+            "position": "belowSearch"
+          },
+          {
+            "type": "partCard",
+            "fields": {
+              "image": "mainMedia",
+              "title": "title",
+              "price": "price",
+              "condition": "condition",
+              "availability": "inStock"
+            }
+          }
+        ]
+      },
+      "PartDetailScreen": {
+        "type": "detail",
+        "collection": "Parts",
+        "components": [
+          {
+            "type": "imageGallery",
+            "field": "mainMedia"
+          },
+          {
+            "type": "title",
+            "field": "title",
+            "style": "h1"
+          },
+          {
+            "type": "price",
+            "field": "price",
+            "currency": "USD"
+          },
+          {
+            "type": "description",
+            "field": "description"
+          },
+          {
+            "type": "specifications",
+            "field": "vehicleCompatibility"
+          },
+          {
+            "type": "addToCart",
+            "text": "Add to Cart",
+            "style": "primary"
+          },
+          {
+            "type": "partnerInfo",
+            "field": "partnerId"
+          }
+        ]
+      },
+      "OrdersScreen": {
+        "type": "collection",
+        "collection": "Orders",
+        "filter": "userId = currentUser.id",
+        "layout": "list",
+        "components": [
+          {
+            "type": "orderCard",
+            "fields": {
+              "orderNumber": "orderNumber",
+              "status": "fulfillmentStatus",
+              "total": "totals.total",
+              "date": "createdDate",
+              "items": "lineItems"
+            }
+          }
+        ]
+      },
+      "OrderDetailScreen": {
+        "type": "detail",
+        "collection": "Orders",
+        "components": [
+          {
+            "type": "orderHeader",
+            "fields": {
+              "orderNumber": "orderNumber",
+              "status": "fulfillmentStatus",
+              "date": "createdDate"
+            }
+          },
+          {
+            "type": "deliveryTracking",
+            "field": "driverInfo"
+          },
+          {
+            "type": "itemsList",
+            "field": "lineItems"
+          },
+          {
+            "type": "totals",
+            "field": "totals"
+          },
+          {
+            "type": "contactDriver",
+            "condition": "fulfillmentStatus = 'SHIPPED'"
+          }
+        ]
+      },
+      "DriverDashboard": {
+        "type": "custom",
+        "userType": "driver",
+        "components": [
+          {
+            "type": "statusToggle",
+            "text": "Online/Offline",
+            "field": "isOnline"
+          },
+          {
+            "type": "earningsCard",
+            "fields": {
+              "todayEarnings": "todayEarnings",
+              "weekEarnings": "weekEarnings",
+              "totalEarnings": "earnings"
+            }
+          },
+          {
+            "type": "availablePickups",
+            "collection": "Orders",
+            "filter": "fulfillmentStatus = 'PROCESSING' AND driverId = null"
+          },
+          {
+            "type": "activeDeliveries",
+            "collection": "Orders",
+            "filter": "driverId = currentUser.id AND fulfillmentStatus = 'SHIPPED'"
+          }
+        ]
+      },
+      "ProfileScreen": {
+        "type": "profile",
+        "components": [
+          {
+            "type": "userInfo",
+            "editable": true
+          },
+          {
+            "type": "subscriptionStatus",
+            "field": "subscriptionPlan"
+          },
+          {
+            "type": "paymentMethods",
+            "collection": "PaymentMethods"
+          },
+          {
+            "type": "addresses",
+            "collection": "Addresses"
+          },
+          {
+            "type": "settings",
+            "options": [
+              "notifications",
+              "location",
+              "privacy"
+            ]
+          },
+          {
+            "type": "logout",
+            "text": "Sign Out"
+          }
+        ]
+      },
+      "CheckoutScreen": {
+        "type": "checkout",
+        "components": [
+          {
+            "type": "cartSummary",
+            "field": "cartItems"
+          },
+          {
+            "type": "deliveryAddress",
+            "required": true
+          },
+          {
+            "type": "paymentMethod",
+            "required": true
+          },
+          {
+            "type": "deliveryOptions",
+            "options": [
+              "standard",
+              "express",
+              "premium"
+            ]
+          },
+          {
+            "type": "orderSummary"
+          },
+          {
+            "type": "placeOrder",
+            "text": "Place Order"
+          }
+        ]
+      }
+    },
+    "collections": {
+      "Parts": {
+        "permissions": "read",
+        "fields": {
+          "_id": "text",
+          "title": "text",
+          "description": "richText",
+          "price": "number",
+          "categoryId": "reference",
+          "partnerId": "reference",
+          "vehicleCompatibility": "json",
+          "condition": "text",
+          "inStock": "boolean",
+          "slug": "text",
+          "mainMedia": "media",
+          "ribbon": "text",
+          "inventory": "json"
+        }
+      },
+      "Orders": {
+        "permissions": "owner",
+        "fields": {
+          "_id": "text",
+          "orderNumber": "text",
+          "buyerInfo": "json",
+          "billingInfo": "json",
+          "shippingInfo": "json",
+          "paymentStatus": "text",
+          "fulfillmentStatus": "text",
+          "totals": "json",
+          "lineItems": "json",
+          "createdDate": "date",
+          "updatedDate": "date",
+          "driverId": "reference",
+          "driverInfo": "json"
+        }
+      },
+      "Users": {
+        "permissions": "admin",
+        "fields": {
+          "_id": "text",
+          "email": "text",
+          "username": "text",
+          "firstName": "text",
+          "lastName": "text",
+          "userType": "text",
+          "title": "text",
+          "slug": "text",
+          "createdAt": "date",
+          "subscriptionPlan": "text"
+        }
+      },
+      "Drivers": {
+        "permissions": "admin",
+        "fields": {
+          "_id": "text",
+          "userId": "reference",
+          "vehicleInfo": "json",
+          "isOnline": "boolean",
+          "rating": "number",
+          "earnings": "number",
+          "currentLocation": "json",
+          "status": "text"
+        }
+      },
+      "Categories": {
+        "permissions": "read",
+        "fields": {
+          "_id": "text",
+          "name": "text",
+          "description": "text",
+          "slug": "text",
+          "visible": "boolean",
+          "numberOfProducts": "number"
+        }
+      },
+      "Partners": {
+        "permissions": "read",
+        "fields": {
+          "_id": "text",
+          "name": "text",
+          "email": "text",
+          "phone": "text",
+          "address": "json",
+          "partnerType": "text",
+          "isActive": "boolean",
+          "rating": "number"
+        }
+      }
+    },
+    "workflows": {
+      "orderPlacement": {
+        "trigger": "orderCreated",
+        "steps": [
+          "sendConfirmationEmail",
+          "notifyNearbyDrivers",
+          "updateInventory",
+          "processPayment"
+        ]
+      },
+      "driverAssignment": {
+        "trigger": "driverAcceptsOrder",
+        "steps": [
+          "assignDriverToOrder",
+          "notifyCustomer",
+          "startDeliveryTracking"
+        ]
+      },
+      "deliveryComplete": {
+        "trigger": "deliveryConfirmed",
+        "steps": [
+          "updateOrderStatus",
+          "processDriverPayment",
+          "requestCustomerReview",
+          "updateEarnings"
+        ]
+      }
+    },
+    "notifications": {
+      "orderConfirmed": {
+        "title": "Order Confirmed!",
+        "body": "Your ShopHand™ order #{orderNumber} has been confirmed.",
+        "action": "openOrder"
+      },
+      "driverAssigned": {
+        "title": "Driver Assigned",
+        "body": "{driverName} is picking up your order.",
+        "action": "trackOrder"
+      },
+      "orderDelivered": {
+        "title": "Order Delivered",
+        "body": "Your parts have been delivered!",
+        "action": "rateDriver"
+      },
+      "newPickupAvailable": {
+        "title": "New Pickup Available",
+        "body": "A pickup opportunity near you: ${location}",
+        "action": "viewPickup",
+        "audience": "drivers"
+      }
+    },
+    "integrations": {
+      "payments": {
+        "stripe": {
+          "enabled": true,
+          "methods": ["card", "apple_pay", "google_pay"]
+        },
+        "paypal": {
+          "enabled": true
+        }
+      },
+      "location": {
+        "googleMaps": true,
+        "geolocation": true
+      },
+      "camera": {
+        "enabled": true,
+        "features": ["photo", "barcode"]
+      },
+      "analytics": {
+        "wixAnalytics": true,
+        "customEvents": [
+          "part_viewed",
+          "cart_added",
+          "order_placed",
+          "driver_online",
+          "delivery_completed"
+        ]
+      }
+    }
+  }
+}
