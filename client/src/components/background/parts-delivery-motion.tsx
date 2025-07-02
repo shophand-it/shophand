@@ -43,7 +43,7 @@ export function PartsDeliveryMotionBG() {
       </motion.div>
 
       {/* Floating auto parts */}
-      {['🔧', '🛞', '🔋', '🛠️', '⚡', '🔩'].map((part, index) => (
+      {['🔧', '🛞', '🔋', '🛠️', '⚡', '🔩'].map((partEmoji, index) => (
         <motion.div
           key={index}
           className="absolute text-3xl"
@@ -64,7 +64,7 @@ export function PartsDeliveryMotionBG() {
             delay: index * 0.5
           }}
         >
-          {part}
+          {partEmoji}
         </motion.div>
       ))}
 
