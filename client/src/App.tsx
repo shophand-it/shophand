@@ -17,7 +17,7 @@ import NotFound from "@/pages/not-found";
 import NavigationHeader from "@/components/shared/navigation-header";
 import BottomNavigation from "@/components/shared/bottom-navigation";
 import Footer from "@/components/shared/footer";
-import { DebugMotion } from "@/components/background/debug-motion";
+import { PartsDeliveryMotionBG } from "@/components/background/parts-delivery-motion";
 
 export type InterfaceMode = "customer" | "driver" | "business";
 
@@ -28,8 +28,8 @@ function Router() {
 
   return (
     <div className="min-h-screen bg-automotive-black-900 text-white relative overflow-x-hidden">
-      {/* Debug motion background */}
-      <DebugMotion />
+      {/* Fancy motion background with auto parts being delivered */}
+      <PartsDeliveryMotionBG />
       
       <div className="relative z-10">
         <NavigationHeader 
