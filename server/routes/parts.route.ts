@@ -1,5 +1,8 @@
-import { db } from "./db";
+import express from "express";
+import { db } from "../config/db";
 import { parts } from "@shared/schema";
+
+const router = express.Router();
 
 export async function addPartsToCatalog() {
   try {
@@ -107,3 +110,15 @@ export async function addPartsToCatalog() {
     throw error;
   }
 }
+
+// Add parts routes
+router.post('/add', async (req, res) => {
+  try {
+    const result = await addPartsToCatalog();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add parts' });
+  }
+});
+
+export default router;

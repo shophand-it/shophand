@@ -1,3 +1,7 @@
+import express from "express";
+
+const router = express.Router();
+
 import {
   users,
   drivers,
@@ -27,7 +31,7 @@ import {
   type InsertOrderItem,
   type InsertDelivery,
 } from "@shared/schema";
-import { db } from "./db";
+import { db } from "../config/db";
 import { eq } from "drizzle-orm";
 
 // Interface for storage operations
@@ -98,6 +102,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
+    console.log('Storage.createUser received data:', insertUser);
     const [user] = await db
       .insert(users)
       .values(insertUser)
@@ -296,3 +301,31 @@ export class DatabaseStorage implements IStorage {
 }
 
 export const storage = new DatabaseStorage();
+
+// Add order routes
+router.get('/', async (req, res) => {
+  try {
+    // Get orders based on user type
+    const userId = req.session?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Not authenticated' });
+    }
+    
+    const orders = await storage.getOrdersByUser(userId);
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
+    const orderData = req.body;
+    const newOrder = await storage.createOrder(orderData);
+    res.json(newOrder);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create order' });
+  }
+});
+
+export default router;

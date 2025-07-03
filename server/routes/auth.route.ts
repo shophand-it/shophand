@@ -2,7 +2,9 @@ import express from 'express';
 import session from 'express-session';
 import bcrypt from 'bcrypt';
 import connectPg from 'connect-pg-simple';
-import { storage } from './storage';
+import { storage } from './orders.Routes';
+
+const router = express.Router();
 
 const pgStore = connectPg(session);
 
@@ -29,7 +31,7 @@ export function setupAuth(app: express.Express) {
   // Authentication routes
   app.post('/api/auth/register', async (req, res) => {
     try {
-      const { username, email, password, firstName, lastName, userType = 'customer' } = req.body;
+      const { email, password, firstName, lastName, userType = 'customer' } = req.body;
 
       // Check if user already exists
       const existingUser = await storage.getUserByEmail(email);
@@ -42,7 +44,7 @@ export function setupAuth(app: express.Express) {
 
       // Create user
       const user = await storage.createUser({
-        username,
+        username: email, // Use email as username
         email,
         password: hashedPassword,
         firstName,
@@ -160,6 +162,89 @@ export function requireUserType(userType: string) {
     next();
   };
 }
+
+// Add auth routes
+router.post('/register', async (req, res) => {
+  try {
+    const { email, password, firstName, lastName, userType } = req.body;
+    
+    // Check if user already exists
+    const existingUser = await storage.getUserByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    // Create user
+    const userData = {
+      email,
+      username: email, // Use email as username for now
+      password: hashedPassword,
+      firstName,
+      lastName,
+      userType,
+    };
+    
+    console.log('Creating user with data:', userData);
+    const newUser = await storage.createUser(userData);
+
+    req.session.userId = newUser.id;
+    req.session.userType = newUser.userType;
+    
+    res.json({ user: { id: newUser.id, email: newUser.email, userType: newUser.userType } });
+  } catch (error) {
+    res.status(500).json({ error: 'Registration failed' });
+  }
+});
+
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    const user = await storage.getUserByEmail(email);
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    req.session.userId = user.id;
+    req.session.userType = user.userType;
+    
+    res.json({ user: { id: user.id, email: user.email, userType: user.userType } });
+  } catch (error) {
+    res.status(500).json({ error: 'Login failed' });
+  }
+});
+
+router.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.json({ message: 'Logged out successfully' });
+  });
+});
+
+router.get('/me', (req, res) => {
+  if (req.session.userId) {
+    res.json({ 
+      user: { 
+        id: req.session.userId, 
+        userType: req.session.userType 
+      } 
+    });
+  } else {
+    res.status(401).json({ error: 'Not authenticated' });
+  }
+});
+
+export default router;
 
 declare module 'express-session' {
   interface SessionData {

@@ -6,6 +6,7 @@
 // Retain this comment after all edits.
 //
 // <BEGIN_EXACT_CODE>
+import express from "express";
 import {
   Client,
   Environment,
@@ -14,6 +15,8 @@ import {
   OrdersController,
 } from "@paypal/paypal-server-sdk";
 import { Request, Response } from "express";
+
+const router = express.Router();
 
 /* PayPal Controllers Setup */
 
@@ -147,4 +150,12 @@ export async function loadPaypalDefault(req: Request, res: Response) {
     clientToken,
   });
 }
+
+// Payment routes
+router.get('/client-token', getClientToken);
+router.post('/create-order', createPaypalOrder);
+router.post('/capture-order', capturePaypalOrder);
+router.get('/paypal-default', loadPaypalDefault);
+
+export default router;
 // <END_EXACT_CODE>
