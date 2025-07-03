@@ -3,7 +3,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import partsRoutes from './routes/parts.route';
+import partsRoutes from './parts.route';
 import authRoutes, { setupAuth } from './routes/auth.route';
 import vendorsRoutes from './routes/payment.route';
 import ordersRoutes from './routes/orders.route';
