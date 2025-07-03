@@ -4,9 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import partsRoutes from './parts.route';
-import authRoutes, { setupAuth } from './routes/auth.route';
-import vendorsRoutes from './routes/payment.route';
-import ordersRoutes from './routes/orders.route';
+import authRoutes, { setupAuth } from './auth.route';
+import vendorsRoutes from './payment.route';
+import ordersRoutes from './orders.route';
 
 dotenv.config();
 
