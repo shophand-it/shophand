@@ -1,72 +1,32 @@
-import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
-import { automationEngine } from "./automation";
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import partsRoutes from './routes/parts.route';
+import authRoutes from './routes/auth.route';
+import vendorsRoutes from './routes/payment.route';
+import ordersRoutes from './routes/orders.route';
 
 const app = express();
+const PORT = parseInt(process.env.PORT || '3000', 10);
+
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+// Routes
+app.use('/api/parts', partsRoutes);
+app.use('/api/vendors', vendorsRoutes);
+app.use('/api/orders', ordersRoutes);
+app.use('/api/auth', authRoutes);
 
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
+// Serve frontend static build
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get('*', (_, res) =>
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+);
 
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
-      }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
-      log(logLine);
-    }
-  });
-
-  next();
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🛠️ Server running on http://localhost:${PORT}`);
 });
-
-(async () => {
-  const server = await registerRoutes(app);
-
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
-  }
-
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  
-const port = parseInt(process.env.PORT || "3000", 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
-})();
