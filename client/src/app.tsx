@@ -1,29 +1,27 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Example pages (replace with your real components)
 import Home from "./pages/Home";
 import Parts from "./pages/Parts";
-import Checkout from "./pages/Checkout";
-import Success from "./pages/Success";
+import Orders from "./pages/Orders";
+import Transactions from "./pages/Transactions";
 import NotFound from "./pages/NotFound";
 
-const App = () => {
+function App() {
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900">
-      <header className="bg-white shadow-md p-4">
-        <h1 className="text-2xl font-bold text-center text-blue-600">🔧 Shophandit</h1>
-      </header>
-
-      <main className="p-6">
+    <Router>
+      <div className="min-h-screen bg-gray-50 text-gray-900">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/parts" element={<Parts />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/success" element={<Success />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </main>
-    </div>
+      </div>
+    </Router>
   );
-};
+}
 
 export default App;
