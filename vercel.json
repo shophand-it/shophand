@@ -1,29 +1,37 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "server/index.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "client/**/*",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/public"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/server/index.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/public/$1"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+"redirects": [
+{
+"source": "/:path*",
+"has": [
+{
+"type": "host",
+"value": "shophandit.com"
+}
+],
+"destination": "https://www.shophandit.com/:path*",
+"permanent": true
+},
+{
+"source": "/:path*",
+"has": [
+{
+"type": "host",
+"value": "http://shophandit.com"
+}
+],
+"destination": "https://www.shophandit.com/:path*",
+"permanent": true
+},
+{
+"source": "/:path*",
+"has": [
+{
+"type": "host",
+"value": "http://www.shophandit.com"
+}
+],
+"destination": "https://www.shophandit.com/:path*",
+"permanent": true
+}
+]
 }
