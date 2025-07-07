@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App'; // Must match the file name exactly
+import App from './App'; // ✅ Must match case and path exactly
 import './index.css';
 
 const root = document.getElementById('root');
